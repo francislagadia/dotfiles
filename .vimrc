@@ -14,6 +14,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'majutsushi/tagbar'
 
+" resizing automatically the windows you are working on to the size specified in the "Golden Ratio"
+Plugin 'roman/golden-ratio'
+
 "A simple, easy-to-use Vim alignment plugin.
 Plugin 'junegunn/vim-easy-align'
 
@@ -79,16 +82,7 @@ nmap ga <Plug>(EasyAlign)
 " Solarized Colorscheme Config
 " ------------------------------------------------------------------
 syntax enable
-"let g:solarized_bold = 0
-"let g:solarized_italic=0
-"let g:solarized_underline=0
-"let g:solarized_termcolors = 16
 let g:solarized_termtrans=1    "default value is 0
-"let g:solarized_contrast="high"    "default value is normal
-""let g:solarized_contrast="low"    "default value is normal
-"let g:solarized_visibility="high"    "default value is normal
-""let g:solarized_visibility="low"    "default value is normal
-""let g:solarized_diffmode="high"    "default value is normal
 
 "set t_Co=16
 ""set t_Co=256
