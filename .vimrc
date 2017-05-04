@@ -26,6 +26,9 @@ Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'tpope/vim-cucumber'
 
+"Simple tmux statusline generator with support for powerline symbols and vim/airline/lightline statusline integration
+Bundle 'edkolev/tmuxline.vim'
+
 "This small script modifies Vim's indentation behavior to comply with PEP8
 Plugin 'Vimjas/vim-python-pep8-indent'
 
@@ -34,6 +37,9 @@ Plugin 'mileszs/ack.vim'
 
 "Dark powered asynchronous unite all interfaces for Neovim/Vim8
 Plugin 'Shougo/denite.nvim'
+
+"Make unite/denite replace quickfix list and location list.
+"Plugin 'chemzqm/unite-location'
 
 "provides mappings to easily delete, change and add such surroundings in pairs."
 Plugin 'tpope/vim-surround'
@@ -137,3 +143,32 @@ set path+=**
 "show invisible characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
+"----------------------------------------------------------------------------------
+"I don't want to jump to the first result automatically.
+cnoreabbrev Ack Ack!
+"----------------------------------------------------------------------------------
+
+"----------------------------------------------------------------------------------
+"Denite Config
+" Ack command on grep source
+call denite#custom#var('grep', 'command', ['ack'])
+call denite#custom#var('grep', 'default_opts',
+            \ ['--ackrc', $HOME.'/.ackrc', '-H',
+            \  '--nopager', '--nocolor', '--nogroup', '--column'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--match'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+"Recently edited files can be searched with <Leader>m
+nnoremap <silent> <Leader>m :Denite -buffer-name=recent -winheight=10 file_mru<cr>
+
+"Open buffers can be navigated with <Leader>b
+nnoremap <Leader>b :Denite -buffer-name=buffers -winheight=10 buffer<cr>
+
+"My application can be searched with <Leader>f
+nnoremap <Leader>f :Denite grep:.<cr>
+
+"Open denite quickfix
+nnoremap <Leader>q :Denite -mode=normal -auto-resize quickfix<cr>
+"----------------------------------------------------------------------------------

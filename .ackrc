@@ -2,6 +2,8 @@
 
 #ignore case distinctions in PATTERN
 --ignore-case
+#ignore tags file
+--ignore-file=is:tags
 # This is the default ackrc for ack version 2.14.
 
 # There are four different ways to match
