@@ -129,5 +129,4 @@ source ~/github/liquidprompt/liquidprompt
 alias rebash='source ~/.bashrc && echo "reloaded ~/.bashrc"'
 alias ebash='vim ~/.bashrc'
 alias erebash='vim ~/.bashrc && rebash'
-
-alias config='/usr/bin/git --git-dir=/home/flagadia/.cfg/ --work-tree=/home/flagadia'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
