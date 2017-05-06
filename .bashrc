@@ -122,6 +122,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -d "$HOME/bin" ] ; then
+  PATH="$PATH:$HOME/bin"
+fi
+
+PATH=$HOME/.local/bin:$PATH
+
 #add liquidprompt PS1 info
 source ~/github/liquidprompt/liquidprompt
 
