@@ -2,19 +2,22 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+"set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
+"alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
+"
+"let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+"precision colorscheme for the vim text editor
 Plugin 'altercation/vim-colors-solarized'
+
+"Vim plugin that displays tags in a window, ordered by scope
 Plugin 'majutsushi/tagbar'
 
-" resizing automatically the windows you are working on to the size specified in the "Golden Ratio"
+"resizing automatically the windows you are working on to the size specified in the "Golden Ratio"
 Plugin 'roman/golden-ratio'
 
 "A simple, easy-to-use Vim alignment plugin.
@@ -23,8 +26,6 @@ Plugin 'junegunn/vim-easy-align'
 "Vim plugin that displays tags in a window, ordered by scope
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
-Plugin 'tpope/vim-cucumber'
 
 "Simple tmux statusline generator with support for powerline symbols and vim/airline/lightline statusline integration
 Bundle 'edkolev/tmuxline.vim'
@@ -38,46 +39,16 @@ Plugin 'mileszs/ack.vim'
 "Dark powered asynchronous unite all interfaces for Neovim/Vim8
 Plugin 'Shougo/denite.nvim'
 
-"Make unite/denite replace quickfix list and location list.
-"Plugin 'chemzqm/unite-location'
-
 "provides mappings to easily delete, change and add such surroundings in pairs."
 Plugin 'tpope/vim-surround'
 
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-"
-" plugin on GitHub repo
+"a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
-"" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-"" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-"" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-"" The sparkup vim script is in a subdirectory of this repo called vim.
-"" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"" Install L9 and avoid a Naming conflict if you've already installed a
-"" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" All of your Plugins must be added before the following line
+"All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
+
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
@@ -134,6 +105,8 @@ set wildmenu
 set lazyredraw
 set hlsearch
 set history=10000
+
+"turn off word wrap
 set nowrap
 
 
@@ -150,7 +123,7 @@ cnoreabbrev Ack Ack!
 
 "----------------------------------------------------------------------------------
 "Denite Config
-" Ack command on grep source
+"Ack command on grep source
 call denite#custom#var('grep', 'command', ['ack'])
 call denite#custom#var('grep', 'default_opts',
             \ ['--ackrc', $HOME.'/.ackrc', '-H',
