@@ -1,0 +1,11 @@
+[include]
+    path = ~/.git_info
+[core]
+	excludesfile = ~/.gitignore
+[alias]
+	visual = !gitk
+	plog = log --pretty --graph --oneline
+	co = checkout
+	br = branch
+	st = status
+	ci = commit
