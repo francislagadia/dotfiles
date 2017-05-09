@@ -122,6 +122,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -d "$HOME/bin" ] ; then
+  PATH="$PATH:$HOME/bin"
+fi
+
+PATH=$HOME/.local/bin:$PATH
+
 #add liquidprompt PS1 info
 source ~/github/liquidprompt/liquidprompt
 
@@ -129,5 +135,4 @@ source ~/github/liquidprompt/liquidprompt
 alias rebash='source ~/.bashrc && echo "reloaded ~/.bashrc"'
 alias ebash='vim ~/.bashrc'
 alias erebash='vim ~/.bashrc && rebash'
-
-alias config='/usr/bin/git --git-dir=/home/flagadia/.cfg/ --work-tree=/home/flagadia'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
