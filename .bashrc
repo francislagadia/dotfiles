@@ -137,6 +137,8 @@ fi
 #add liquidprompt PS1 info
 source ~/github/liquidprompt/liquidprompt
 
+export EDITOR='vim'
+
 #custom command aliases
 alias rebash='source ~/.bashrc && echo "reloaded ~/.bashrc"'
 alias ebash='vim ~/.bashrc'
