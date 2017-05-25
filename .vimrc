@@ -39,6 +39,15 @@ Plugin 'mileszs/ack.vim'
 "Dark powered asynchronous unite all interfaces for Neovim/Vim8
 Plugin 'Shougo/denite.nvim'
 
+"Git log, git status and git changed source for Denite.nvim
+Plugin 'chemzqm/denite-git'
+
+"Control your location list and quickfix list by unite/denite
+Plugin 'chemzqm/unite-location'
+
+"A CtrlP matcher, specialized for paths
+Plugin 'nixprime/cpsm'
+
 "provides mappings to easily delete, change and add such surroundings in pairs."
 Plugin 'tpope/vim-surround'
 
@@ -133,6 +142,17 @@ call denite#custom#var('grep', 'pattern_opt', ['--match'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
+
+" Change matchers.
+call denite#custom#source(
+            \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+
+" Change ignore_globs
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+            \ [ '.git/', '.ropeproject/', '__pycache__/',
+            \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+
+
 "Recently edited files can be searched with <Leader>m
 nnoremap <silent> <Leader>m :Denite -buffer-name=recent -winheight=10 file_mru<cr>
 
@@ -140,8 +160,12 @@ nnoremap <silent> <Leader>m :Denite -buffer-name=recent -winheight=10 file_mru<c
 nnoremap <Leader>b :Denite -buffer-name=buffers -winheight=10 buffer<cr>
 
 "My application can be searched with <Leader>f
-nnoremap <Leader>f :Denite grep:.<cr>
+nnoremap <Leader>f :Denite file_rec:.<cr>
+
+"My application can be searched with <Leader>a
+nnoremap <Leader>a :Denite grep:.<cr>
 
 "Open denite quickfix
-nnoremap <Leader>q :Denite -mode=normal -auto-resize quickfix<cr>
+"nnoremap <Leader>q :Denite -mode=normal -auto-resize quickfix<cr>
+nnoremap <Leader>q :Denite quickfix<cr>
 "----------------------------------------------------------------------------------

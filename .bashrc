@@ -134,8 +134,8 @@ if [ -d "$HOME/.tmp" ] ; then
     TMPDIR=$HOME/.tmp
 fi
 
-#add liquidprompt PS1 info
-source ~/github/liquidprompt/liquidprompt
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+[[ $- = *i* ]] && source ~/github/liquidprompt/liquidprompt
 
 export EDITOR='vim'
 
