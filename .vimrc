@@ -54,6 +54,30 @@ Plugin 'tpope/vim-surround'
 "a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
+"use CTRL-A/CTRL-X to increment dates, times, and more
+Plugin 'tpope/vim-speeddating'
+
+"easily search for, substitute, and abbreviate multiple variants of a word
+Plugin 'tpope/vim-abolish'
+
+"pairs of handy bracket mappings
+Plugin 'tpope/vim-unimpaired'
+
+"comment stuff out
+Plugin 'tpope/vim-commentary'
+
+"Simplified clipboard functionality for Vim
+Plugin 'svermeulen/vim-easyclip'
+
+"enable repeating supported plugin maps with \".\" 
+Plugin 'tpope/vim-repeat'
+
+"Tern plugin for Vim
+Plugin 'ternjs/tern_for_vim'
+
+"Syntax checking hacks for vim
+Plugin 'vim-syntastic/syntastic'
+
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
