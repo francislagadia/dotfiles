@@ -67,7 +67,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-commentary'
 
 "Simplified clipboard functionality for Vim
-Plugin 'svermeulen/vim-easyclip'
+"Plugin 'svermeulen/vim-easyclip'
 
 "enable repeating supported plugin maps with \".\" 
 Plugin 'tpope/vim-repeat'
@@ -101,6 +101,23 @@ colorscheme solarized
 
 "airline setting
 let g:airline_powerline_fonts = 1
+
+"easyclip settings
+"let g:EasyClipUseYankDefaults         = 1
+"let g:EasyClipUseCutDefaults          = 1
+"let g:EasyClipUsePasteDefaults        = 1
+"let g:EasyClipEnableBlackHoleRedirect = 1
+"let g:EasyClipUsePasteToggleDefaults  = 1
+"
+"syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "add mouse support
 set mouse=a
