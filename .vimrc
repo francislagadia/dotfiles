@@ -78,6 +78,9 @@ Plugin 'ternjs/tern_for_vim'
 "Syntax checking hacks for vim
 Plugin 'vim-syntastic/syntastic'
 
+"Robot Framework related plugins
+Plugin 'mfukar/robotframework-vim'
+
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -116,18 +119,32 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 "add mouse support
 set mouse=a
 
 "add clipboard support
-set clipboard=unnamedplus
-set smartindent
-set tabstop=4
-set shiftwidth=4
+set clipboard=unnamed
+
+" Indent settings
+" http://vim.wikia.com/wiki/Indenting_source_code
+set tabstop=4    " width of TAB character
+set shiftwidth=4 " width of >>, <<, or ==
 set expandtab
+set autoindent
+
+" python specific file settings
+" https://realpython.com/vim-and-python-a-match-made-in-heaven/
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 
 "line numbers
 set number
@@ -135,7 +152,7 @@ set number
 "status bar always
 set laststatus=2
 
-"relative line numbers
+"show line distances relative to cursor
 set relativenumber
 
 "ignore case during search, use \c to override
@@ -158,7 +175,6 @@ set history=10000
 
 "turn off word wrap
 set nowrap
-
 
 "fuzzy file behavior
 set path+=**
@@ -209,4 +225,8 @@ nnoremap <Leader>a :Denite grep:.<cr>
 "Open denite quickfix
 "nnoremap <Leader>q :Denite -mode=normal -auto-resize quickfix<cr>
 nnoremap <Leader>q :Denite quickfix<cr>
+
+"Default denite keys
+"<C-t> move up
+"<C-g> move down
 "----------------------------------------------------------------------------------

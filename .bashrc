@@ -139,8 +139,21 @@ fi
 
 export EDITOR='vim'
 
-#custom command aliases
+# custom command aliases
 alias rebash='source ~/.bashrc && echo "reloaded ~/.bashrc"'
 alias ebash='vim ~/.bashrc'
 alias erebash='vim ~/.bashrc && rebash'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Sequel Pro helper function
+function openSequel {
+
+          export LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN=1
+
+          nohup /Applications/Sequel\ Pro.app/Contents/MacOS/Sequel\ Pro &
+
+
+}
+
+# do not exit using ^D
+set -o ignoreeof
