@@ -138,12 +138,12 @@ set autoindent
 " python specific file settings
 " https://realpython.com/vim-and-python-a-match-made-in-heaven/
 au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=120 | "from 90
+    \ set expandtab |
+    \ set autoindent |
     \ set fileformat=unix
 
 "line numbers
@@ -176,8 +176,8 @@ set history=10000
 "turn off word wrap
 set nowrap
 
-"fuzzy file behavior
-set path+=**
+""fuzzy file behavior
+"set path+=**
 
 "show invisible characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
