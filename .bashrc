@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -145,15 +145,14 @@ alias ebash='vim ~/.bashrc'
 alias erebash='vim ~/.bashrc && rebash'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# Sequel Pro helper function
-function openSequel {
-
-          export LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN=1
-
-          nohup /Applications/Sequel\ Pro.app/Contents/MacOS/Sequel\ Pro &
-
-
-}
-
 # do not exit using ^D
 set -o ignoreeof
+
+# save hist across sessions
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
