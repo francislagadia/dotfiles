@@ -143,6 +143,7 @@ export EDITOR='vim'
 alias rebash='source ~/.bashrc && echo "reloaded ~/.bashrc"'
 alias ebash='vim ~/.bashrc'
 alias erebash='vim ~/.bashrc && rebash'
+alias evim='vim ~/.vimrc'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # do not exit using ^D
@@ -153,6 +154,10 @@ HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
+# fzf settings
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+#export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"

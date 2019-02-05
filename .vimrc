@@ -36,6 +36,9 @@ Plug 'tpope/vim-eunuch'
 " GitHub extension for fugitive.vim
 Plug 'tpope/vim-rhubarb'
 
+" Asynchronous build and test dispatcher
+Plug 'tpope/vim-dispatch'
+
 " A simple, easy-to-use Vim alignment plugin.
 Plug 'junegunn/vim-easy-align'
 
@@ -44,13 +47,15 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " precision colorscheme for the vim text editor
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
 
 " resizing automatically the windows you are working on to the size specified in the "Golden Ratio"
 Plug 'roman/golden-ratio'
 
-" Vim plugin for the Perl module / CLI script 'ack'
-Plug 'mileszs/ack.vim'
+"" Vim plugin for the Perl module / CLI script 'ack'
+"Plug 'mileszs/ack.vim'
 
 " Vim plugin that displays tags in a window, ordered by scope
 Plug 'vim-airline/vim-airline'
@@ -71,10 +76,19 @@ Plug 'mfukar/robotframework-vim'
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
 
-let g:ale_enabled = 0
+let g:ale_enabled = 1
 
 " Python syntax checker
 Plug 'nvie/vim-flake8'
+
+" Run tests at the speed of thought
+Plug 'janko-m/vim-test'
+
+let test#strategy = "dispatch"
+let test#python#runner = 'pytest'
+let test#python#pytest#file_pattern = '\.py'
+let test#python#pytest#options = '-vs --showlocals'
+let g:test#runner_commands = ['Pytest']
 
 " file system explorer
 Plug 'scrooloose/nerdtree'
@@ -150,7 +164,7 @@ set fdm=manual
 set fdo-=search
 
 " add limit indicator
-set colorcolumn=80
+set colorcolumn=120
 
 set showcmd
 set cursorline
@@ -186,16 +200,26 @@ nmap ga <Plug>(EasyAlign)
 " Solarized Colorscheme Config
 " ------------------------------------------------------------------
 syntax enable
-let g:solarized_termtrans=1    "default value is 0
+" let g:solarized_termtrans=1    "default value is 0
+" set background=dark
+" colorscheme solarized
+" colorscheme solarized8
+
+" set Vim-specific sequences for RGB colors
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 " ------------------------------------------------------------------
 " Airline Config
 " ------------------------------------------------------------------
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+"let g:airline_theme='monokai_tasty'
+"let g:airline_theme='solarized'
+let g:airline_theme='gruvbox'
+"let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 
@@ -211,7 +235,7 @@ let g:airline#extensions#ale#enabled = 1
 " Ack Config
 " ------------------------------------------------------------------
 " I don't want to jump to the first result automatically.
-cnoreabbrev Ack Ack!
+" cnoreabbrev Ack Ack!
 
 " ------------------------------------------------------------------
 " GoldenRatio Config
