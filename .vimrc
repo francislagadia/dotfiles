@@ -1,13 +1,22 @@
 set nocompatible              " be iMproved, required
 
-" vim-plug auto install script
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" auto-install vim-plug
+if has("nvim")
+    if empty(glob('~/.config/nvim/autoload/plug.vim'))
+      silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+                  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall
+    endif
+    call plug#begin()
+else
+    " vim-plug auto install script
+    if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+    call plug#begin('~/.vim/bundle')
 endif
-
-call plug#begin('~/.vim/bundle')
 
 " provides mappings to easily delete, change and add such surroundings in pairs."
 Plug 'tpope/vim-surround'
@@ -38,6 +47,8 @@ Plug 'tpope/vim-rhubarb'
 
 " Asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
+let g:dispatch_quickfix_height=20
+let g:dispatch_tmux_height=20
 
 " A simple, easy-to-use Vim alignment plugin.
 Plug 'junegunn/vim-easy-align'
@@ -75,7 +86,6 @@ Plug 'mfukar/robotframework-vim'
 
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
-
 let g:ale_enabled = 1
 
 " Python syntax checker
@@ -88,33 +98,78 @@ let test#strategy = "dispatch"
 let test#python#runner = 'pytest'
 let test#python#pytest#file_pattern = '\.py'
 let test#python#pytest#options = '-vs --showlocals'
+let test#neovim#term_position = "topleft"
+let test#vim#term_position = "belowright"
 let g:test#runner_commands = ['Pytest']
 
 " file system explorer
 Plug 'scrooloose/nerdtree'
+let g:NERDTreeWinSize=60
+let NERDTreeIgnore = ['.pyc$']
 
 " browse the tags of the current file and get an overview of its structure
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
+let g:tagbar_width = 60
+
+" automated tag file generation
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+
+let g:easytags_async=1
+let g:easytags_auto_highlight=0
 
 "" code-completion engine
 "Plug 'valloric/youcompleteme'
 
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"let g:deoplete#enable_at_startup = 0
-"
-"" awesome Python autocompletion with VIM
-"Plug 'davidhalter/jedi-vim'
+"" code-completion engine
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+" use deoplete
+let g:deoplete#enable_at_startup = 1
+
+" awesome Python autocompletion with VIM
+" has leader key assignments, consult :help jedi-vim
+Plug 'davidhalter/jedi-vim'
+
+"" A Vim plugin for Prettier
+Plug 'prettier/vim-prettier'
+let g:prettier#config#single_quote = 'false'
+
+" JSON manipulation and pretty printing
+Plug 'tpope/vim-jdaddy'
+
+" Note taking
+Plug 'https://github.com/Alok/notational-fzf-vim'
+" search paths
+let g:nv_search_paths = ['~/notes/']
 
 call plug#end()
+" ONI specific settings
+if exists('g:gui_oni')
+    set number
+    set noswapfile
+    set smartcase
+
+    " Enable GUI mouse behavior
+    set mouse=a
+
+    " If using Oni's externalized statusline, hide vim's native statusline,
+    set noshowmode
+    set noruler
+    set laststatus=0
+    set noshowcmd
+endif
+
 
 " add mouse support
-set ttymouse=xterm2
+if !has('nvim')
+    set ttymouse=xterm2
+endif
 set mouse=a
 
 " add clipboard support
@@ -186,6 +241,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " ALE linters
 " ------------------------------------------------------------------
 let b:ale_linters = ['flake8']
+nmap <silent> <leader>aj :ALENextWrap<cr>
+nmap <silent> <leader>ak :ALEPreviousWrap<cr>
 
 " ------------------------------------------------------------------
 " Easy Align Config
@@ -200,25 +257,31 @@ nmap ga <Plug>(EasyAlign)
 " Solarized Colorscheme Config
 " ------------------------------------------------------------------
 syntax enable
-" let g:solarized_termtrans=1    "default value is 0
-" set background=dark
-" colorscheme solarized
-" colorscheme solarized8
 
 " set Vim-specific sequences for RGB colors
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+let g:gruvbox_contrast_dark='hard'
+"let g:gruvbox_italic='1'
 set background=dark
 colorscheme gruvbox
+
+hi Normal guibg=NONE ctermbg=NONE
+
+" let g:solarized_termtrans=1    "default value is 0
+" set background=dark
+""colorscheme solarized
+" colorscheme solarized8
 
 " ------------------------------------------------------------------
 " Airline Config
 " ------------------------------------------------------------------
 "let g:airline_theme='monokai_tasty'
-"let g:airline_theme='solarized'
 let g:airline_theme='gruvbox'
+
+"let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
@@ -245,16 +308,6 @@ let g:golden_ratio_autocommand = 0
 " ------------------------------------------------------------------
 " Denite Config
 " ------------------------------------------------------------------
-"" Ack command on grep source
-"call denite#custom#var('grep', 'command', ['ack'])
-"call denite#custom#var('grep', 'default_opts',
-"            \ ['--ackrc', $HOME.'/.ackrc', '-H',
-"            \  '--nopager', '--nocolor', '--nogroup', '--column'])
-"call denite#custom#var('grep', 'recursive_opts', [])
-"call denite#custom#var('grep', 'pattern_opt', ['--match'])
-"call denite#custom#var('grep', 'separator', ['--'])
-"call denite#custom#var('grep', 'final_opts', [])
-
 " rg command on grep source
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'recursive_opts', [])
@@ -284,13 +337,20 @@ nnoremap <Leader>b :Denite -buffer-name=buffers -winheight=10 buffer<cr>
 nnoremap <Leader>f :Denite file_rec:.<cr>
 
 " My application can be searched with <Leader>a
+" for ack (uses ripgrep)
 nnoremap <Leader>a :Denite grep:.<cr>
 
+" TODO BROKEN
 " Open denite quickfix
-" nnoremap <Leader>q :Denite -mode=normal -auto-resize quickfix<cr>
-nnoremap <Leader>q :Denite quickfix<cr>
+nnoremap <Leader>q :Denite -mode=normal -auto-resize quickfix<cr>
+"nnoremap <Leader>q :Denite quickfix<cr>
+
+" Run TestNearest using <Leader>t
+nnoremap <Leader>t :TestNearest<cr>
 
 " Default denite keys
 "<C-t> move up
 "<C-g> move down
 "----------------------------------------------------------------------------------
+set tags=tags
+

@@ -161,3 +161,4 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+alias ctags='/usr/local/bin/ctags'
