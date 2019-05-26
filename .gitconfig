@@ -9,3 +9,11 @@
 	br = branch
 	st = status
 	ci = commit
+[user]
+	email = francis.lagadia@chromeriver.com
+	name = Francis Lagadia
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
