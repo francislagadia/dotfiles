@@ -50,6 +50,16 @@ Plug 'tpope/vim-dispatch'
 let g:dispatch_quickfix_height=20
 let g:dispatch_tmux_height=20
 
+" JSON manipulation and pretty printing
+Plug 'tpope/vim-jdaddy'
+
+" Modern database interface for Vim
+Plug 'tpope/vim-dadbod'
+
+"" TODO breaks vim-fugitive
+"" A vim plugin to access cheat.sh sheets
+"Plug 'dbeniamine/cheat.sh-vim'
+
 " A simple, easy-to-use Vim alignment plugin.
 Plug 'junegunn/vim-easy-align'
 
@@ -87,6 +97,8 @@ Plug 'mfukar/robotframework-vim'
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
 let g:ale_enabled = 1
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
 
 " Python syntax checker
 Plug 'nvie/vim-flake8'
@@ -140,13 +152,29 @@ Plug 'davidhalter/jedi-vim'
 Plug 'prettier/vim-prettier'
 let g:prettier#config#single_quote = 'false'
 
-" JSON manipulation and pretty printing
-Plug 'tpope/vim-jdaddy'
-
 " Note taking
 Plug 'https://github.com/Alok/notational-fzf-vim'
 " search paths
 let g:nv_search_paths = ['~/notes/']
+
+
+" A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
+Plug 'https://github.com/airblade/vim-gitgutter'
+
+" Hunk-add and hunk-revert for chunk staging
+nmap <Leader>ga <Plug>GitGutterStageHunk
+nmap <Leader>gu <Plug>GitGutterUndoHunk
+
+" Jump between hunks
+nmap <Leader>gn <Plug>GitGutterNextHunk
+nmap <Leader>gN <Plug>GitGutterPrevHunk
+
+" Use fontawesome icons as signs
+let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_modified = ''
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_modified_removed = ''
 
 call plug#end()
 " ONI specific settings
@@ -319,7 +347,7 @@ call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 call denite#custom#source(
             \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
 
-call denite#custom#var('file_rec', 'command',
+call denite#custom#var('file/rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
 
 " Change ignore_globs
@@ -334,7 +362,7 @@ nnoremap <silent> <Leader>m :Denite -buffer-name=recent -winheight=10 file_mru<c
 nnoremap <Leader>b :Denite -buffer-name=buffers -winheight=10 buffer<cr>
 
 " My application can be searched with <Leader>f
-nnoremap <Leader>f :Denite file_rec:.<cr>
+nnoremap <Leader>f :Denite file/rec:.<cr>
 
 " My application can be searched with <Leader>a
 " for ack (uses ripgrep)
@@ -353,4 +381,3 @@ nnoremap <Leader>t :TestNearest<cr>
 "<C-g> move down
 "----------------------------------------------------------------------------------
 set tags=tags
-

@@ -1,7 +1,7 @@
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */Users/flagadia/.fzf/bin* ]]; then
-  export PATH="$PATH:/Users/flagadia/.fzf/bin"
+  export PATH="${PATH:+${PATH}:}/Users/flagadia/.fzf/bin"
 fi
 
 # Auto-completion
@@ -11,4 +11,3 @@ fi
 # Key bindings
 # ------------
 source "/Users/flagadia/.fzf/shell/key-bindings.bash"
-

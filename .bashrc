@@ -137,7 +137,8 @@ fi
 # Only load Liquid Prompt in interactive shells, not from a script or from scp
 [[ $- = *i* ]] && source ~/github/liquidprompt/liquidprompt
 
-export EDITOR='vim'
+# export EDITOR=vim
+VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
 # custom command aliases
 alias rebash='source ~/.bashrc && echo "reloaded ~/.bashrc"'
