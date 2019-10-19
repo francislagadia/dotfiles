@@ -9,6 +9,7 @@
 	br = branch
 	st = status
 	ci = commit
+	alias = config --get-regexp ^alias\\.
 [user]
 	email = francis.lagadia@chromeriver.com
 	name = Francis Lagadia

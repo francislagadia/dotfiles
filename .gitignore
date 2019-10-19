@@ -3,3 +3,8 @@
 *.swo
 *.swn
 *.pyc
+*.pyo
+.hypothesis/
+.pytest/
+.idea/
+.DS_Store

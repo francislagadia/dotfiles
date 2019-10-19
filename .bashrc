@@ -10,8 +10,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
-
+HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -163,3 +162,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 alias ctags='/usr/local/bin/ctags'
+#export LP_PS1_PREFIX='🇵🇭  '
+source ~/.iterm2_shell_integration.bash
