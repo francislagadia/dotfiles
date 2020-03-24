@@ -24,6 +24,9 @@ Plug 'tpope/vim-surround'
 " a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
+" Easy git merge conflict resolution in Vim, requires vim-fugitive
+Plug 'christoomey/vim-conflicted'
+
 " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'tpope/vim-speeddating'
 
@@ -90,7 +93,13 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 
 " Dark powered asynchronous unite all interfaces for Neovim/Vim8
-Plug 'Shougo/denite.nvim'
+if has('nvim')
+  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/denite.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 " Robot Framework related plugins
 Plug 'mfukar/robotframework-vim'
@@ -107,10 +116,21 @@ Plug 'nvie/vim-flake8'
 " Run tests at the speed of thought
 Plug 'janko-m/vim-test'
 
-" Python syntax highlighting script for Vim
-"Plug 'hdima/python-syntax'
-Plug 'vim-python/python-syntax'
+"
+"Semantic Highlighting for Python in Neovim
+if has('nvim')
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+else
+    " Python syntax highlighting script for Vim
+    "Plug 'hdima/python-syntax'
+    Plug 'vim-python/python-syntax'
+endif
 
+
+"The uncompromising Python code formatter
+Plug 'psf/black'
+let g:black_linelength = 120
+let g:black_skip_string_normalization = 1
 
 let test#strategy = "dispatch"
 let test#python#runner = 'pytest'
@@ -123,7 +143,7 @@ let g:test#runner_commands = ['Pytest']
 " file system explorer
 Plug 'scrooloose/nerdtree'
 let g:NERDTreeWinSize=60
-let NERDTreeIgnore = ['.pyc$']
+let NERDTreeIgnore = ['^\.\S+[[dir]]', '\.py\S$']
 
 " browse the tags of the current file and get an overview of its structure
 Plug 'majutsushi/tagbar'
@@ -147,12 +167,20 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'deoplete-plugins/deoplete-jedi'
+
 " use deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 100
+
 
 " awesome Python autocompletion with VIM
 " has leader key assignments, consult :help jedi-vim
 Plug 'davidhalter/jedi-vim'
+
+" disable jedi-vim's completion and use deoplete-jedi
+let g:jedi#completions_enabled = 0
 
 " jedi-vim supports the following commands
 " Completion <C-Space>
@@ -171,6 +199,15 @@ let g:prettier#config#single_quote = 'false'
 Plug 'https://github.com/Alok/notational-fzf-vim'
 " search paths
 let g:nv_search_paths = ['~/notes/']
+"" Dictionary with string keys and values. Must be in the form 'ctrl-KEY':
+"" 'command' or 'alt-KEY' : 'command'. See examples below.
+"let g:nv_keymap = {
+"                    \ 'ctrl-s': 'split ',
+"                    \ 'ctrl-v': 'vertical split ',
+"                    \ 'ctrl-t': 'tabedit ',
+"                    \ })
+"" String. Must be in the form 'ctrl-KEY' or 'alt-KEY'
+"let g:nv_create_note_key = 'ctrl-x'
 
 
 " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
@@ -249,7 +286,8 @@ set number
 set laststatus=2
 
 " show line distances relative to cursor
-set relativenumber
+"set relativenumber
+set norelativenumber
 
 " ignore case during search, use \c to override
 set ignorecase
@@ -280,6 +318,7 @@ set nowrap
 
 " show invisible characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
 
 " ------------------------------------------------------------------
 " ALE linters
@@ -348,10 +387,10 @@ hi Normal guibg=NONE ctermbg=NONE
 " Airline Config
 " ------------------------------------------------------------------
 "let g:airline_theme='monokai_tasty'
-let g:airline_theme='gruvbox'
-
 "let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
+
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 
@@ -410,6 +449,9 @@ nnoremap <silent> <leader>f :Denite file/rec -auto-resize -smartcase -start-filt
 " for ack (uses ripgrep)
 "nnoremap <Leader>a :Denite grep:.<cr>
 nnoremap <silent> <leader>a :Denite grep -auto-resize<CR>
+
+" reopen denite buffer
+nnoremap <silent> <leader>e :Denite -resume<CR>
 
 " Denite keys
 function! s:denite_my_settings() abort
@@ -479,7 +521,10 @@ function! NerdTreeToggleFind()
     endif
 endfunction
 
+
 nnoremap <C-\> :call NerdTreeToggleFind()<CR>
 nnoremap <F2> :TagbarToggle<CR>
 let g:python_highlight_all = 1
 nmap <F8> <Plug>(ale_fix)
+nnoremap <F1> :NV<CR>
+nnoremap <F9> :Black<CR>

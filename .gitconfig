@@ -10,6 +10,7 @@
 	st = status
 	ci = commit
 	alias = config --get-regexp ^alias\\.
+	conflicted = !nvim +Conflicted
 [user]
 	email = francis.lagadia@chromeriver.com
 	name = Francis Lagadia

@@ -40,6 +40,12 @@
 # http://git-scm.com/
 --ignore-directory=is:.git
 
+# Tox
+--ignore-directory=is:.tox
+
+# venv
+--ignore-directory=is:venv
+
 # Mercurial
 # http://mercurial.selenic.com/
 --ignore-directory=is:.hg

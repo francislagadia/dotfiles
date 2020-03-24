@@ -1,5 +1,5 @@
 "add clipboard support
-set clipboard=unnamed
+set clipboard+=unnamed
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -11,8 +11,8 @@ set number
 "status bar always
 set laststatus=2
 
-"use relative line numbers for IDE
-set relativenumber
+""use relative line numbers for IDE
+"set relativenumber
 
 "ignore case during search, use \c to override
 set ignorecase
