@@ -1,13 +1,13 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */Users/flagadia/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/Users/flagadia/.fzf/bin"
+if [[ ! "$PATH" == */home/francis/.fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/home/francis/.fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/Users/flagadia/.fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && source "/home/francis/.fzf/shell/completion.bash" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/Users/flagadia/.fzf/shell/key-bindings.bash"
+source "/home/francis/.fzf/shell/key-bindings.bash"
