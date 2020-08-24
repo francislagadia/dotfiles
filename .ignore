@@ -5,5 +5,7 @@ __pycache__
 .DS_Store
 .cache/
 .pytest_cache/
+.vscode/
 *.tox/
 *.venv/
+.python-version

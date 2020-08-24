@@ -8,3 +8,5 @@
 .pytest/
 .idea/
 .DS_Store
+.cfg/
+.python-version

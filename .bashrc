@@ -160,7 +160,7 @@ PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 alias ctags='/usr/local/bin/ctags'
 source ~/.iterm2_shell_integration.bash
 
@@ -169,3 +169,4 @@ export PATH="$PATH:/Users/flagadia/.local/bin"
 
 # export hub creds
 hub_creds
+api_key
