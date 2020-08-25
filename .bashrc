@@ -164,8 +164,9 @@ source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 alias ctags='/usr/local/bin/ctags'
 #source ~/.iterm2_shell_integration.bash
 
-## Created by `userpath` on 2020-01-27 02:06:41
-#export PATH="$PATH:/Users/flagadia/.local/bin"
+export PATH="/home/francis/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # export hub creds
 hub_creds
