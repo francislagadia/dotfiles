@@ -85,32 +85,17 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-jdaddy'
 " Modern database interface for Vim
 Plug 'tpope/vim-dadbod'
-" A simple, easy-to-use Vim alignment plugin.
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
-
-" Vim plugin that displays tags in a window, ordered by scope
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Simple tmux statusline generator with support for powerline symbols and vim/airline/lightline statusline integration
 Plug 'edkolev/tmuxline.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
-" Dark powered asynchronous unite all interfaces for Neovim/Vim8
-if has('nvim')
-  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/denite.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-
-" Run tests at the speed of thought
 Plug 'janko-m/vim-test'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree'
