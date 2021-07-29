@@ -10,13 +10,13 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth:erasedups
+#HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
-shopt -s histappend
+#shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+#HISTSIZE=100000
+#HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -149,10 +149,26 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # do not exit using ^D
 set -o ignoreeof
 
-# save hist across sessions
-HISTCONTROL=ignoredups:erasedups
+## https://unix.stackexchange.com/a/265649
+export HISTCONTROL=ignoreboth:erasedups
+export HISTSIZE=100000
+export HISTFILESIZE=200000
 shopt -s histappend
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
+## Eternal bash history.
+## ---------------------
+## Undocumented feature which sets the size to "unlimited".
+## http://stackoverflow.com/questions/9457233/unlimited-bash-history
+#export HISTFILESIZE=
+#export HISTSIZE=
+#export HISTTIMEFORMAT="[%F %T] "
+## Change the file location because certain bash sessions truncate .bash_history file upon close.
+## http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+#export HISTFILE=~/.bash_eternal_history
+## Force prompt to write history after every command.
+## http://superuser.com/questions/20900/bash-history-loss
+#PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # fzf settings
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -164,9 +180,11 @@ source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 alias ctags='/usr/local/bin/ctags'
 source ~/.iterm2_shell_integration.bash
 
-# Created by `userpath` on 2020-01-27 02:06:41
-export PATH="$PATH:/Users/flagadia/.local/bin"
+## Created by `userpath` on 2020-01-27 02:06:41
+#export PATH="$PATH:/Users/flagadia/.local/bin"
 
-# export hub creds
+# export env files
 hub_creds
 api_key
+get_aws
+

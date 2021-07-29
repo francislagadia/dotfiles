@@ -107,6 +107,12 @@ Plug 'mbbill/undotree'
 Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
+
+" snippet support
+" snippet engine.
+Plug 'SirVer/ultisnips'
+" snippet examples
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " --- vim python (polyglot) settings.
@@ -275,6 +281,12 @@ function! s:denite_my_settings() abort
   \ denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <Space>
   \ denite#do_map('toggle_select').'j'
+  nnoremap <silent><buffer><expr> s
+  \ denite#do_map('do_action', 'split')
+  nnoremap <silent><buffer><expr> v
+  \ denite#do_map('do_action', 'vsplit')
+  nnoremap <silent><buffer><expr> <Esc>
+              \ denite#do_map('quit')
 endfunction
 
 
@@ -294,8 +306,13 @@ let test#python#pytest#executable = 'python -m pytest'
 
 
 " Run TestNearest using <Leader>t
-nnoremap <Leader>t :TestNearest<cr>
-nnoremap <Leader>T :TestFile<cr>
+"nnoremap <Leader>t :TestNearest<cr>
+"nnoremap <Leader>T :TestFile<cr>
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 " Tags specific
 let g:tagbar_width = 60
@@ -323,3 +340,22 @@ endfunction
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <C-\> :call NerdTreeToggleFind()<CR>
 nnoremap <F1> :NV<CR>
+
+" Snippets config
+" Trigger configuration. You need to change this to something else than <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" python snippet settings
+let g:ultisnips_python_quoting_style = 'double'
+let g:ultisnips_python_style = 'google'
+
+" neovim python lib is in the neovim pyenv virtual env
+let g:python3_host_prog = expand('~/.pyenv/versions/neovim/bin/python')
+"let g:csv_delim = ','
+let g:csv_no_conceal = 1
+
+set stl+=%{ConflictedVersion()}
