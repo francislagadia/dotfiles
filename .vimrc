@@ -42,6 +42,8 @@ set updatetime=50
 " Don't pass messages to |ins-completion-menu|. (hide user defined completion)
 set shortmess+=c
 
+
+
 " auto-install vim-plug
 if has("nvim")
     if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -59,35 +61,52 @@ else
     endif
     call plug#begin('~/.vim/bundle')
 endif
+
 " provides mappings to easily delete, change and add such surroundings in pairs."
 Plug 'tpope/vim-surround'
+
 " a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+
 " Easy git merge conflict resolution in Vim, requires vim-fugitive
 Plug 'christoomey/vim-conflicted'
+
 " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'tpope/vim-speeddating'
+
 " easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
+
 " pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
+
 " comment stuff out
 Plug 'tpope/vim-commentary'
+
 " enable repeating supported plugin maps with \".\"
 Plug 'tpope/vim-repeat'
+
 " Vim sugar for the UNIX shell commands that need it the most
 Plug 'tpope/vim-eunuch'
+
 " GitHub extension for fugitive.vim
 Plug 'tpope/vim-rhubarb'
+
 " Asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
+
 " JSON manipulation and pretty printing
 Plug 'tpope/vim-jdaddy'
+
 " Modern database interface for Vim
 Plug 'tpope/vim-dadbod'
+
+" A simple, easy-to-use Vim alignment plugin.
 Plug 'junegunn/vim-easy-align'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 Plug 'gruvbox-community/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
@@ -103,16 +122,33 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mbbill/undotree'
 
-" automated tag file generation
-Plug 'majutsushi/tagbar'
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
+"" automated tag file generation
+"Plug 'majutsushi/tagbar'
+"Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc'
 
 " snippet support
 " snippet engine.
 Plug 'SirVer/ultisnips'
 " snippet examples
 Plug 'honza/vim-snippets'
+" neovim in the browser
+if has("nvim")
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+endif
+
+" split/merge lines
+Plug 'AndrewRadev/splitjoin.vim'
+
+" has pretty print?
+Plug 'tpope/vim-scriptease'
+
+"python formatter
+Plug 'psf/black', { 'branch': 'stable' }
+
+" gitv is nice. But I needed a faster, and possibly simpler alternative that I can use with a project with thousands of commits.
+Plug 'junegunn/gv.vim'
+
 call plug#end()
 
 " --- vim python (polyglot) settings.
@@ -236,9 +272,10 @@ call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 
-" Change matchers.
-call denite#custom#source(
-            \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+" note: this needs another plugin to be installed
+"" Change matchers.
+"call denite#custom#source(
+"            \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
 
 call denite#custom#var('file/rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
@@ -314,12 +351,12 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
-" Tags specific
-let g:tagbar_width = 60
-let g:easytags_async=1
-let g:easytags_auto_highlight=0
-set tags=tags
-nnoremap <F2> :TagbarToggle<CR>
+"" Tags specific
+"let g:tagbar_width = 60
+"let g:easytags_async=1
+"let g:easytags_auto_highlight=0
+"set tags=tags
+"nnoremap <F2> :TagbarToggle<CR>
 
 " 'scrooloose/nerdtree'
 let g:NERDTreeWinSize=60
@@ -353,9 +390,19 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_quoting_style = 'double'
 let g:ultisnips_python_style = 'google'
 
+"" black settings
+let g:black_skip_string_normalization=1
+
 " neovim python lib is in the neovim pyenv virtual env
 let g:python3_host_prog = expand('~/.pyenv/versions/neovim/bin/python')
 "let g:csv_delim = ','
 let g:csv_no_conceal = 1
 
 set stl+=%{ConflictedVersion()}
+
+" firenvim config
+if exists('g:started_by_firenvim')
+  set laststatus=0
+  set guifont=PragmataPro\ Mono\ Liga:h18
+  au BufEnter github.com_*.txt set filetype=markdown
+endif

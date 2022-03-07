@@ -9,6 +9,7 @@
 	br = branch
 	st = status
 	ci = commit
+	wt = worktree
 	alias = config --get-regexp ^alias\\.
 	conflicted = !nvim +Conflicted
 [user]
