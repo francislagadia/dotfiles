@@ -153,8 +153,13 @@ set -o ignoreeof
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=100000
 export HISTFILESIZE=200000
+
+## https://www.baeldung.com/linux/preserve-history-multiple-windows
 shopt -s histappend
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# og working, not sure from where
+#PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# from link above
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 ## Eternal bash history.
 ## ---------------------
@@ -183,8 +188,20 @@ alias ctags='/usr/local/bin/ctags'
 #export PATH="$PATH:/Users/flagadia/.local/bin"
 
 # export env files
-hub_creds
+#hub_creds
 api_key
 get_aws
 
 eval "$(pyenv init -)"
+
+function nvimvenv {
+  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
+    source "$VIRTUAL_ENV/bin/activate"
+    command nvim $@
+    deactivate
+  else
+    command nvim $@
+  fi
+}
+
+alias nvim=nvimvenv

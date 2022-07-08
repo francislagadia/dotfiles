@@ -10,4 +10,5 @@
 .DS_Store
 .cfg/
 .python-version
+.pylintrc
 pyrightconfig.json

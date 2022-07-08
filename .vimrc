@@ -34,7 +34,7 @@ set fdm=manual
 " foldopen
 set fdo-=search
 " add limit indicator
-set colorcolumn=120
+set colorcolumn=88
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -144,12 +144,25 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-scriptease'
 
 "python formatter
-Plug 'psf/black', { 'branch': 'stable' }
+Plug 'psf/black', { 'tag': 'stable' }
 
 " gitv is nice. But I needed a faster, and possibly simpler alternative that I can use with a project with thousands of commits.
 Plug 'junegunn/gv.vim'
 
+"if has("nvim")
+"  Plug 'beauwilliams/focus.nvim'
+"endif
+
 call plug#end()
+
+"if has("nvim")
+"  "You must run setup() to begin using focus
+"  lua require("focus").setup({minwidth = 88, treewidth = 20})
+"  " this key assignment does not work
+"  "vim.api.nvim_set_keymap('n', '<c-l>', ':FocusSplitNicely<CR>', { silent = true })
+"  nmap <leader>fn :FocusSplitNicely<CR>
+"endif
+
 
 " --- vim python (polyglot) settings.
 let g:python_highlight_all = 1
@@ -378,17 +391,24 @@ nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <C-\> :call NerdTreeToggleFind()<CR>
 nnoremap <F1> :NV<CR>
 
+""""""""""""
 " Snippets config
+
+" do not remap built-in complete function
+"inoremap <c-x><c-k> <c-x><c-k>
 " Trigger configuration. You need to change this to something else than <tab> if you use https://github.com/Valloric/YouCompleteMe.
+
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 " python snippet settings
 let g:ultisnips_python_quoting_style = 'double'
 let g:ultisnips_python_style = 'google'
+
+""""""""""""
 
 "" black settings
 let g:black_skip_string_normalization=1
@@ -406,3 +426,4 @@ if exists('g:started_by_firenvim')
   set guifont=PragmataPro\ Mono\ Liga:h18
   au BufEnter github.com_*.txt set filetype=markdown
 endif
+
