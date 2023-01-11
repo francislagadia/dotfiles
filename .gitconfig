@@ -1,5 +1,6 @@
 [include]
     path = ~/.git_info
+    path = ~/.git_secrets
 [core]
 	excludesfile = ~/.gitignore
 [alias]
@@ -11,10 +12,7 @@
 	ci = commit
 	wt = worktree
 	alias = config --get-regexp ^alias\\.
-	conflicted = !nvim +Conflicted
-[user]
-	email = francis.lagadia@chromeriver.com
-	name = Francis Lagadia
+	conflicted = !vim +Conflicted
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -22,3 +20,5 @@
 	smudge = git-lfs smudge -- %f
 [pull]
 	rebase = false
+[commit]
+	gpgsign = true

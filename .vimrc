@@ -15,11 +15,10 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set termguicolors
+"leaving this on makes colors inconsitent in tmux and non-tmux vim
+"set termguicolors
 " add mouse support
-if !has('nvim')
-    set ttymouse=xterm2
-endif
+set ttymouse=xterm2
 set mouse=a
 " add clipboard support
 set clipboard=unnamed
@@ -45,22 +44,13 @@ set shortmess+=c
 
 
 " auto-install vim-plug
-if has("nvim")
-    if empty(glob('~/.config/nvim/autoload/plug.vim'))
-      silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-                  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      autocmd VimEnter * PlugInstall
-    endif
-    call plug#begin()
-else
-    " vim-plug auto install script
-    if empty(glob('~/.vim/autoload/plug.vim'))
-      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
-    call plug#begin('~/.vim/bundle')
+" vim-plug auto install script
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+              \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+call plug#begin('~/.vim/bundle')
 
 " provides mappings to easily delete, change and add such surroundings in pairs."
 Plug 'tpope/vim-surround'
@@ -108,7 +98,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'gruvbox-community/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Simple tmux statusline generator with support for powerline symbols and vim/airline/lightline statusline integration
@@ -132,10 +121,6 @@ Plug 'mbbill/undotree'
 Plug 'SirVer/ultisnips'
 " snippet examples
 Plug 'honza/vim-snippets'
-" neovim in the browser
-if has("nvim")
-  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-endif
 
 " split/merge lines
 Plug 'AndrewRadev/splitjoin.vim'
@@ -149,20 +134,7 @@ Plug 'psf/black', { 'tag': 'stable' }
 " gitv is nice. But I needed a faster, and possibly simpler alternative that I can use with a project with thousands of commits.
 Plug 'junegunn/gv.vim'
 
-"if has("nvim")
-"  Plug 'beauwilliams/focus.nvim'
-"endif
-
 call plug#end()
-
-"if has("nvim")
-"  "You must run setup() to begin using focus
-"  lua require("focus").setup({minwidth = 88, treewidth = 20})
-"  " this key assignment does not work
-"  "vim.api.nvim_set_keymap('n', '<c-l>', ':FocusSplitNicely<CR>', { silent = true })
-"  nmap <leader>fn :FocusSplitNicely<CR>
-"endif
-
 
 " --- vim python (polyglot) settings.
 let g:python_highlight_all = 1
@@ -248,7 +220,6 @@ nmap ga <Plug>(EasyAlign)
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set background=dark
-"colorscheme PaperColor
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -414,7 +385,7 @@ let g:ultisnips_python_style = 'google'
 let g:black_skip_string_normalization=1
 
 " neovim python lib is in the neovim pyenv virtual env
-let g:python3_host_prog = expand('~/.pyenv/versions/neovim/bin/python')
+"let g:python3_host_prog = expand('~/.pyenv/versions/neovim/bin/python')
 "let g:csv_delim = ','
 let g:csv_no_conceal = 1
 
