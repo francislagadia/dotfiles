@@ -42,7 +42,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -191,6 +191,7 @@ alias ctags='/usr/local/bin/ctags'
 #hub_creds
 api_key
 get_aws
+set_hypnos_keys
 
 eval "$(pyenv init -)"
 
@@ -199,9 +200,14 @@ function nvimvenv {
     source "$VIRTUAL_ENV/bin/activate"
     command nvim $@
     deactivate
+    pyenv activate
   else
     command nvim $@
   fi
 }
 
-alias nvim=nvimvenv
+alias nvim2=nvimvenv
+
+# use 1Password ssh agent
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+

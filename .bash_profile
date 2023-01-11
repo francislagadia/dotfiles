@@ -28,3 +28,4 @@ VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
 export PATH
 
+export GPG_TTY=$(tty)
