@@ -1,6 +1,5 @@
 [include]
-    path = ~/.git_info
-    path = ~/.git_secrets
+    path = ~/secrets/.git_secrets
 [core]
 	excludesfile = ~/.gitignore
 [alias]
