@@ -389,7 +389,20 @@ let g:black_skip_string_normalization=1
 "let g:csv_delim = ','
 let g:csv_no_conceal = 1
 
+" Vimrc autocmd group
+augroup myVimrc
+  autocmd!
+augroup END
+
+" add info to statusline
 set stl+=%{ConflictedVersion()}
+
+ function! s:setupConflicted()
+     set stl+=%{ConflictedVersion()}
+     " Resolve and move to next conflicted file.
+     nnoremap ]m :GitNextConflict<cr>
+ endfunction
+ autocmd myVimrc User VimConflicted call s:setupConflicted()
 
 " firenvim config
 if exists('g:started_by_firenvim')
