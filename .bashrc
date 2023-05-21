@@ -189,9 +189,9 @@ alias ctags='/usr/local/bin/ctags'
 
 # export env files
 #hub_creds
-api_key
-get_aws
-set_hypnos_keys
+#api_key
+#get_aws
+#set_hypnos_keys
 
 eval "$(pyenv init -)"
 
@@ -211,3 +211,5 @@ alias nvim2=nvimvenv
 # use 1Password ssh agent
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
+# use RipGrep rc file
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
