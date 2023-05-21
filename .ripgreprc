@@ -1,0 +1,4 @@
+# RipGrep configuration
+
+# exclude settings/cache folders from search
+--glob=!{.idea|.pytest|.hypothesis}/*
