@@ -107,7 +107,7 @@ Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'janko-m/vim-test'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mbbill/undotree'
 
@@ -118,9 +118,9 @@ Plug 'mbbill/undotree'
 
 " snippet support
 " snippet engine.
-Plug 'SirVer/ultisnips'
-" snippet examples
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"" snippet examples
+"Plug 'honza/vim-snippets'
 
 " split/merge lines
 Plug 'AndrewRadev/splitjoin.vim'
@@ -144,27 +144,27 @@ let g:dispatch_quickfix_height=20
 let g:dispatch_tmux_height=20
 
 " GoTo code navigation.
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
-nnoremap <leader>cr :CocRestart
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+"nmap <leader>gd <Plug>(coc-definition)
+"nmap <leader>gy <Plug>(coc-type-definition)
+"nmap <leader>gi <Plug>(coc-implementation)
+"nmap <leader>gr <Plug>(coc-references)
+"nmap <leader>rr <Plug>(coc-rename)
+"nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+"nmap <leader>g] <Plug>(coc-diagnostic-next)
+"nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
+"nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
+"nnoremap <leader>cr :CocRestart
+"inoremap <silent><expr> <c-space> coc#refresh()
+"
+"" Use K to show documentation in preview window.
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
 
 
 " Sweet Sweet FuGITive
@@ -228,7 +228,7 @@ hi Normal guibg=NONE ctermbg=NONE
 " ------------------------------------------------------------------
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#coc#enabled = 1
+"let g:airline#extensions#coc#enabled = 1
 
 " ------------------------------------------------------------------
 " ripgrep Config
@@ -369,15 +369,15 @@ nnoremap <F1> :NV<CR>
 "inoremap <c-x><c-k> <c-x><c-k>
 " Trigger configuration. You need to change this to something else than <tab> if you use https://github.com/Valloric/YouCompleteMe.
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-" python snippet settings
-let g:ultisnips_python_quoting_style = 'double'
-let g:ultisnips_python_style = 'google'
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-j>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+"
+"" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+"" python snippet settings
+"let g:ultisnips_python_quoting_style = 'double'
+"let g:ultisnips_python_style = 'google'
 
 """"""""""""
 

@@ -33,3 +33,4 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
 export PATH
 
 export GPG_TTY=$(tty)
+export LANG="en_US.UTF-8"
