@@ -213,3 +213,6 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 
 # use RipGrep rc file
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+# netskop config for open ssl
+export SSL_CERT_FILE='/Library/Application Support/Netskope/STAgent/data/nscacert.pem'
