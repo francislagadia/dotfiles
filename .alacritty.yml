@@ -120,29 +120,36 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: monospace
+    # family: monospace
     family: PragmataProMonoLiga Nerd Font
-    #family: ProggyCleanTTSZ Nerd Font Mono
-    #family: SFMono Nerd Font
+    # family: "0xProto"
+    # family: BerkeleyMono Nerd Font Mono Plus Font Awesome Plus Font Awesome Extension Plus Octicons Plus Power Symbols Plus Codicons Plus Pomicons Plus Font Logos Plus Material Design Icons Plus Weather Icons
+    # family: IosevkaTerm Nerd Font
+    # family: IosevkaTerm Nerd Font Mono
+    # family: IosevkaTerm Nerd Font Propo
+    # family: Monoid Nerd Font Mono
+    # family: JetBrainsMono Nerd Font
+    # family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     style: Regular
     #style: Book
 
   # Bold font face
-  #bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
     #family: PragmataProMonoLiga Nerd Font
+    # family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Bold
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
@@ -151,10 +158,10 @@ font:
     #family: PragmataProMonoLiga Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Italic
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
@@ -163,7 +170,7 @@ font:
     #family: PragmataProMonoLiga Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+    style: Bold Italic
 
   # Point size
   #size: 11.0
