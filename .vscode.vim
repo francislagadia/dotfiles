@@ -1,3 +1,10 @@
+"This file is used by vscode-neovim to configure neovim.
+"Prerequisites:
+"- vscode-neovim extension should be installed
+"- vscode-neovim should be enabled in settings.json
+"- vscode-neovim should be configured to use this file as configuration file
+
+
 "add clipboard support
 set clipboard+=unnamed
 set smartindent
