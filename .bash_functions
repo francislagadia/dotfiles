@@ -125,7 +125,13 @@ fh() {
 
 # fph - repeat persistent history
 fph() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || cat ~/.persistent_history) | fzf +s --tac | sed 's/.*|\s*//')
+  # search ~/.persistent_history for commands, execute selected command, and save selected command to bash history
+  local selected_command
+  selected_command=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || cat ~/.persistent_history) | fzf +s --tac | sed 's/.*|\s* //')
+  echo "$selected_command"
+  eval "$selected_command"
+  history -s "$selected_command"
+
 }
 
 ## fbr - checkout git branch
