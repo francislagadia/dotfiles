@@ -1,12 +1,3 @@
-# Sequel Pro helper function
-function openSequel {
-
-          export LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN=1
-
-          nohup /Applications/Sequel\ Pro.app/Contents/MacOS/Sequel\ Pro &
-
-}
-
 # No arguments: `git status`
 # With arguments: acts like `git`
 g() {
@@ -132,6 +123,11 @@ fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
+# fph - repeat persistent history
+fph() {
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || cat ~/.persistent_history) | fzf +s --tac | sed 's/.*|\s*//')
+}
+
 ## fbr - checkout git branch
 #fbr() {
 #  local branches branch
@@ -230,3 +226,4 @@ fshow_preview() {
                 --bind "enter:execute:$_viewGitLogLine   | less -R" \
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
+

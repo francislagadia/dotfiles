@@ -44,6 +44,3 @@ set nowrap
 
 "show invisible characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-
-"emulate vim-surround
-set surround

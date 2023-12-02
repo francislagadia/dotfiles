@@ -149,17 +149,41 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # do not exit using ^D
 set -o ignoreeof
 
-## https://unix.stackexchange.com/a/265649
-export HISTCONTROL=ignoreboth:erasedups
-export HISTSIZE=100000
-export HISTFILESIZE=200000
+## https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
+log_bash_persistent_history()
+{
+  [[
+    $(history 1) =~ ^\ *[0-9]+\ +([^\ ]+\ [^\ ]+)\ +(.*)$
+  ]]
+  local date_part="${BASH_REMATCH[1]}"
+  local command_part="${BASH_REMATCH[2]}"
+  if [ "$command_part" != "$PERSISTENT_HISTORY_LAST" ]
+  then
+    echo $date_part "|" "$command_part" >> ~/.persistent_history
+    export PERSISTENT_HISTORY_LAST="$command_part"
+  fi
+}
 
-## https://www.baeldung.com/linux/preserve-history-multiple-windows
-shopt -s histappend
-# og working, not sure from where
-#PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
-# from link above
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+# Stuff to do on PROMPT_COMMAND
+run_on_prompt_command()
+{
+    log_bash_persistent_history
+}
+
+export HISTTIMEFORMAT="%F %T  "
+PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'run_on_prompt_command'
+
+# ## https://unix.stackexchange.com/a/265649
+# export HISTCONTROL=ignoreboth:erasedups
+# export HISTSIZE=100000
+# export HISTFILESIZE=200000
+#
+# ## https://www.baeldung.com/linux/preserve-history-multiple-windows
+# shopt -s histappend
+# # og working, not sure from where
+# #PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# # from link above
+# PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 ## Eternal bash history.
 ## ---------------------
@@ -219,3 +243,6 @@ export SSL_CERT_FILE='/Library/Application Support/Netskope/STAgent/data/nscacer
 
 # netskope npm cert
 export NODE_EXTRA_CA_CERTS="$HOME/.aws/nskp_config/netskope-cert-bundle.pem"
+
+# line for vscode shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"
