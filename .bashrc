@@ -149,7 +149,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # do not exit using ^D
 set -o ignoreeof
 
-## https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
+# ## https://eli.thegreenplace.net/2013/06/11/keeping-persistent-history-in-bash
 log_bash_persistent_history()
 {
   [[
@@ -244,5 +244,6 @@ export SSL_CERT_FILE='/Library/Application Support/Netskope/STAgent/data/nscacer
 # netskope npm cert
 export NODE_EXTRA_CA_CERTS="$HOME/.aws/nskp_config/netskope-cert-bundle.pem"
 
-# line for vscode shell integration
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"
+# # line for vscode shell integration
+# need to find another way to do this since this prevents echo from working
+# [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"
