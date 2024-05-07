@@ -233,3 +233,11 @@ fshow_preview() {
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
 
+
+# configcat check flag value
+cc(){
+  local flag settingId
+  flag=$(configcat f ls --json | jq '.[].name' | fzf)
+  settingId=$(configcat f ls --json | jq ".[] | select(.name == $flag)| .settingId")
+  configcat flag value sh --setting-id "$settingId"
+}
