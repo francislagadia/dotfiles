@@ -1,5 +1,5 @@
 # Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/workbrew/bin/brew shellenv)"
 
 [ -r ~/.bashrc ] && source ~/.bashrc
 [ -r ~/.profile ] && source ~/.profile
