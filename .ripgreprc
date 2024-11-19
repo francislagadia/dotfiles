@@ -1,5 +1,9 @@
 # RipGrep configuration
+--max-columns=150
+--max-columns-preview
 
 # exclude settings/cache folders from search
---glob=!{.idea,.pytest,.hypothesis,.pytest_cache,.git,**/.pytest_cache}/*
+--glob=!{.idea,.pytest,.hypothesis,.pytest_cache,.git,**/.pytest_cache,**/venv,**/tox}/*
 
+# exclude pgp files from search
+--glob=!*.pgp
