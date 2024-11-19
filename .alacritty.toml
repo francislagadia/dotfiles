@@ -1,4 +1,3 @@
-live_config_reload = true
 
 [colors.bright]
 black = "#928374"
@@ -269,3 +268,6 @@ mods = "None"
 
 [scrolling]
 history = 10000
+
+[general]
+live_config_reload = true
