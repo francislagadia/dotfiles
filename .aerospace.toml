@@ -298,6 +298,7 @@ run = ['move-node-to-workspace 10']
 
 
 [workspace-to-monitor-force-assignment]
+6 = '^built-in retina display$'
 7 = '^built-in retina display$'
 8 = '^built-in retina display$'
 9 = '^built-in retina display$'
