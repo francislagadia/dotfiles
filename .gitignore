@@ -12,3 +12,4 @@
 .python-version
 .pylintrc
 pyrightconfig.json
+pyproject.toml
