@@ -279,6 +279,10 @@ if.app-id = 'org.alacritty'
 run = ['layout floating']
 
 [[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = ['layout floating']
 
