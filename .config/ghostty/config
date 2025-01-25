@@ -66,7 +66,8 @@ font-family-bold-italic =
 # These are only valid if its corresponding font-family is also specified. If
 # no font-family is specified, then the font-style is ignored unless you're
 # disabling the font style.
-font-style = default
+font-style = Regular
+
 
 font-style-bold = default
 font-style-italic = default
@@ -356,13 +357,13 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 # 
 #   - macOS: titlebar tabs style is not updated when switching themes.
 # 
-theme = OneHalfDark
+theme = GruvboxDarkHard
 
 # Background color for the window.
-background = #282c34
+# background = #282c34
 
 # Foreground color for the window.
-foreground = #ffffff
+# foreground = #ffffff
 
 # The foreground and background color for selection. If this is not set, then
 # the selection color is just the inverted window background and foreground
@@ -776,7 +777,7 @@ mouse-scroll-multiplier = 1
 # On macOS, background opacity is disabled when the terminal enters native
 # fullscreen. This is because the background becomes gray and it can cause
 # widgets to show through which isn't generally desirable.
-background-opacity = 1
+background-opacity = 0.75
 
 # A positive value enables blurring of the background when background-opacity
 # is less than 1. The value is the blur radius to apply. A value of 20
@@ -784,7 +785,7 @@ background-opacity = 1
 # rendering issues as well as performance issues.
 # 
 # This is only supported on macOS.
-background-blur-radius = 0
+background-blur-radius = 20
 
 # The opacity level (opposite of transparency) of an unfocused split.
 # Unfocused splits by default are slightly faded out to make it easier to see
