@@ -216,8 +216,8 @@ alt-v = 'split vertical'
 
 alt-f = 'fullscreen'
 
-#alt-s = 'layout v_accordion' # 'layout stacking' in i3
-#alt-w = 'layout h_accordion' # 'layout tabbed' in i3
+alt-s = 'layout v_accordion' # 'layout stacking' in i3
+alt-w = 'layout h_accordion' # 'layout tabbed' in i3
 alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
@@ -261,6 +261,10 @@ alt-shift-c = 'reload-config'
 
 alt-r = 'mode resize'
 
+# cycle workspaces
+alt-left = 'workspace --wrap-around prev'
+alt-right = 'workspace --wrap-around next'
+
 [mode.resize.binding]
 h = 'resize width -50'
 j = 'resize height +50'
@@ -299,6 +303,7 @@ run = ['move-node-to-workspace 4']
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = ['move-node-to-workspace 10']
+
 
 
 [workspace-to-monitor-force-assignment]

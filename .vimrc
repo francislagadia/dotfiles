@@ -108,7 +108,7 @@ Plug 'janko-m/vim-test'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'https://github.com/Alok/notational-fzf-vim'
+"Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'mbbill/undotree'
 
 "" automated tag file generation
@@ -180,7 +180,7 @@ nmap <leader>gs :G<CR>
 
 " 'https://github.com/Alok/notational-fzf-vim
 " search paths
-let g:nv_search_paths = ['~/notes/']
+"let g:nv_search_paths = ['~/notes/']
 "" Dictionary with string keys and values. Must be in the form 'ctrl-KEY':
 "" 'command' or 'alt-KEY' : 'command'. See examples below.
 "let g:nv_keymap = {
@@ -360,7 +360,7 @@ endfunction
 
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <C-\> :call NerdTreeToggleFind()<CR>
-nnoremap <F1> :NV<CR>
+" nnoremap <F1> :NV<CR>
 
 """"""""""""
 " Snippets config
@@ -396,7 +396,6 @@ augroup END
 
 " add info to statusline
 set stl+=%{ConflictedVersion()}
-
  function! s:setupConflicted()
      set stl+=%{ConflictedVersion()}
      " Resolve and move to next conflicted file.

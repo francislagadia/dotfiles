@@ -1,6 +1,8 @@
-font-family = "PragmataProMonoLiga Nerd Font"
-font-size = 16
-adjust-cell-height = 35%
+font-family = PragmataProMonoLiga Nerd Font
+# font-size = 16
+font-size = 13
+# adjust-cell-height = 35%
+adjust-cell-height = 20%
 font-thicken = true
 
 shell-integration-features = no-cursor,sudo,no-title
@@ -16,8 +18,9 @@ macos-titlebar-style=transparent
 
 # color related
 theme = GruvboxDarkHard
+# theme = iceberg-dark
 # theme = "Builtin Pastel Dark"
-window-colorspace = "display-p3"
+# window-colorspace = display-p3
 term = xterm-256color
 
 # keybindings
@@ -56,6 +59,9 @@ keybind = cmd+s>l=goto_split:right
 keybind = cmd+s>z=toggle_split_zoom
 
 keybind = cmd+s>e=equalize_splits
+
+# do nothing on trigger sequence + esc, by default it will send both keys to the program
+keybind = cmd+s>escape=ignore
 
 # other
 copy-on-select = clipboard
