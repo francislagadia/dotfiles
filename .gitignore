@@ -12,4 +12,5 @@
 .python-version
 .pylintrc
 pyrightconfig.json
-pyproject.toml
+# pyproject.toml
+# .pre-commit-config.yaml
