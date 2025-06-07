@@ -74,6 +74,10 @@ alias erezsh='nvim ~/.zshrc && rezsh'
 alias evim='nvim ~/.vimrc'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+### ── Custom Files ────────────────────────────
+# [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+# [[ -f ~/.bash_functions ]] && source ~/.bash_functions
+
 ### ── Path and Editor ─────────────────────────
 [[ -d "$HOME/bin" ]] && path=($HOME/bin $path)
 [[ -d "$HOME/.local/bin" ]] && path=($HOME/.local/bin $path)
