@@ -87,6 +87,10 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'  # Manage do
 # [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 # [[ -f ~/.bash_functions ]] && source ~/.bash_functions
 
+### ── Fuzzy Finder Functions (macOS) ───────────────
+# Source custom fuzzy navigation and git utilities
+[[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
+
 ### ── Path and Editor ─────────────────────────
 # Prepend custom paths if they exist
 [[ -d "$HOME/bin" ]] && path=($HOME/bin $path)
