@@ -1,11 +1,9 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# ── Powerlevel10k Instant Prompt ─────────────────────────────────────────
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ── Early Exit for Non-Interactive Shells ────────────────────────────────
+# ── Early Exit for Non-Interactive Shells ───────────────────────────────
 [[ $- != *i* ]] && return
 
 # ── Zinit Bootstrap ─────────────────────────────────────────────────────
@@ -13,10 +11,10 @@ if [[ ! -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
   mkdir -p "$HOME/.local/share/zinit"
   git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zinit/zinit.git"
 fi
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+source "$HOME/.local/share/zinit/zinit.zsh"
 
-# ── Plugin Management ───────────────────────────────────────────────────
-# FZF binary and keybindings
+# ── Plugins ─────────────────────────────────────────────────────────────
+# FZF binary & integration
 zinit ice from"gh-r" as"program" pick"bin/fzf"
 zinit light junegunn/fzf
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
@@ -25,55 +23,54 @@ zinit light junegunn/fzf
 zinit light pyenv/pyenv
 eval "$(pyenv init -)"
 
-# Syntax highlighting and autosuggestions
+# Syntax & autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 
-# Enhanced tab completion with fzf
+# FZF-enhanced tab completion
 zinit light Aloxaf/fzf-tab
 
-# ── Completion Styles ───────────────────────────────────────────────────
+# ── Completion Configuration ────────────────────────────────────────────
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%F{yellow}%d%f'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# ── Shell History Configuration ─────────────────────────────────────────
+# ── History & Atuin ─────────────────────────────────────────────────────
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=200000
 
-setopt append_history
-setopt inc_append_history
-setopt share_history
-setopt hist_ignore_dups
+setopt append_history             # Don’t overwrite history file
+setopt inc_append_history         # Save after each command
+setopt share_history              # Share across sessions
+setopt hist_ignore_dups           # Ignore duplicate commands
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 setopt hist_verify
 setopt extended_history
 setopt bang_hist
 
-# ── Atuin Initialization (if installed) ─────────────────────────────────
-if command -v atuin &> /dev/null; then
+# Atuin history manager (if available)
+if command -v atuin &>/dev/null; then
   eval "$(atuin init zsh)"
 fi
 
-# ── Prompt & Powerlevel10k ──────────────────────────────────────────────
-# Color support
+# ── UI: Prompt, Colors, Title ───────────────────────────────────────────
 autoload -U colors && colors
 
-# Terminal title bar
+# Terminal tab/window title
 case "$TERM" in
   xterm*|rxvt*) precmd() { print -Pn "\e]0;%n@%m: %~\a" } ;;
 esac
 
-# Powerlevel10k theme and config
+# Powerlevel10k
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # ── Shell Behavior & Keybindings ────────────────────────────────────────
 setopt ignore_eof
-bindkey -e
+bindkey -e  # Emacs keybindings
 
 # ── Notifications ───────────────────────────────────────────────────────
 alias alert='osascript -e "display notification \"Command finished\" with title \"Terminal\""'
@@ -83,9 +80,11 @@ alias ls='ls -G'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
 alias rezsh='source ~/.zshrc && echo "Reloaded ~/.zshrc"'
 alias ezsh='nvim ~/.zshrc'
 alias erezsh='nvim ~/.zshrc && rezsh'
+
 alias evim='nvim ~/.vimrc'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -94,12 +93,12 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 # [[ -f ~/.bash_functions ]] && source ~/.bash_functions
 
-# ── Paths and Temp Directory ────────────────────────────────────────────
+# ── Paths ───────────────────────────────────────────────────────────────
 [[ -d "$HOME/bin" ]] && path=($HOME/bin $path)
 [[ -d "$HOME/.local/bin" ]] && path=($HOME/.local/bin $path)
 [[ -d "$HOME/.tmp" ]] && export TMPDIR="$HOME/.tmp"
 
-# ── Editor Configuration ────────────────────────────────────────────────
+# ── Editor Settings ─────────────────────────────────────────────────────
 export VISUAL=nvim
 export EDITOR=nvim
 
@@ -109,6 +108,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 export SSL_CERT_FILE="/Library/Application Support/Netskope/STAgent/data/nscacert.pem"
 export NODE_EXTRA_CA_CERTS="$HOME/.aws/nskp_config/netskope-cert-bundle.pem"
 
-# ── Optional Visual Enhancements ────────────────────────────────────────
+# ── Optional Visual Tweaks ──────────────────────────────────────────────
 [[ -f "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh" ]] && source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 # [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"

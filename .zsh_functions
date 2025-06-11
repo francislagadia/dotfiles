@@ -2,154 +2,56 @@
 # ZSH FUZZY UTILITIES (macOS)
 #
 # 🧰 PREREQUISITES (install via Homebrew):
-#   - fzf (brew install fzf)
-#   - fzf-tmux (comes with fzf)
+#   - fzf
+#   - fzf-tmux (bundled with fzf)
 #   - git
 #   - jq
-#   - configcat CLI (npm install -g configcat-cli)
-#   - diff-so-fancy (brew install diff-so-fancy)
+#   - configcat-cli (npm install -g configcat-cli)
+#   - diff-so-fancy
 # ------------------------------------------------------------------------------
 
-# g — Run `git` with arguments or default to `git status`
+# g — Run `git` with args or default to `git status`
 g() {
-  if [[ $# -gt 0 ]]; then
-    git "$@"
-  else
-    git status
-  fi
+  [[ $# -gt 0 ]] && git "$@" || git status
 }
 
-# fe — Fuzzy select file(s) and open with $EDITOR
-fe() {
-  local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && "${EDITOR:-vim}" "${files[@]}"
-}
-
-# fo — Fuzzy open with keybinds: Ctrl-O = macOS open, Ctrl-E/Enter = $EDITOR
-fo() {
-  local out file key
-  IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
-  key="${out[1]}"
-  file="${out[2]}"
-  if [[ -n "$file" ]]; then
-    [[ "$key" == "ctrl-o" ]] && open "$file" || "${EDITOR:-vim}" "$file"
-  fi
-}
-
-# fd — Fuzzy `cd` to a directory (excluding hidden dirs)
-fd() {
-  local dir
-  dir=$(find "${1:-.}" -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) && cd "$dir"
-}
-
-# fda — Fuzzy `cd` to any directory (including hidden dirs)
-fda() {
-  local dir
-  dir=$(find "${1:-.}" -type d 2> /dev/null | fzf +m) && cd "$dir"
-}
-
-# fdr — Fuzzy `cd` to a parent directory
-fdr() {
-  local -a dirs
-  get_parent_dirs() {
-    [[ -d "$1" ]] || return
-    dirs+=("$1")
-    [[ "$1" == "/" ]] && print -l "${dirs[@]}" || get_parent_dirs "$(dirname "$1")"
-  }
-  local dir
-  get_parent_dirs "$(realpath "${1:-$PWD}")"
-  dir=$(print -l "${dirs[@]}" | fzf-tmux --tac) && cd "$dir"
-}
-
-# cdf — Change to directory of selected file
-cdf() {
-  local file dir
-  file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-}
-
-# fbr — Fuzzy checkout Git branch (includes remotes)
+# fbr — Fuzzy checkout Git branch (local + remote)
 fbr() {
   local branches branch
-  branches=$(git branch --all | grep -v HEAD)
-  branch=$(echo "$branches" | fzf-tmux -d $((2 + $(wc -l <<< "$branches"))) +m) &&
-  git checkout "$(echo "$branch" | sed 's/.* //' | sed 's#remotes/[^/]*/##')"
+  branches=$(git branch --all | grep -v 'HEAD')
+  branch=$(echo "$branches" | fzf-tmux -d $((2 + $(wc -l <<< "$branches"))) +m)
+  [[ -n "$branch" ]] && git checkout "$(sed 's/.* //' <<< "$branch" | sed 's#remotes/[^/]*/##')"
 }
 
-# fco — Fuzzy checkout Git branch or tag
-fco() {
-  local tags branches target
-  tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
-  branches=$(git branch --all | grep -v HEAD |
-             sed 's/.* //' | sed 's#remotes/[^/]*/##' |
-             sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
-  target=$( (echo "$tags"; echo "$branches") |
-            fzf-tmux -l30 -- --no-hscroll --ansi +m -d "\t" -n 2 ) || return
-  git checkout "$(echo "$target" | awk '{print $2}')"
-}
+# glNoGraph — Git log without graph, for previews
+alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an"'
 
-# fco_preview — Fuzzy checkout with preview of commits between HEAD and target
-fco_preview() {
-  local tags branches target
-  tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
-  branches=$(git branch --all | grep -v HEAD |
-             sed 's/.* //' | sed 's#remotes/[^/]*/##' |
-             sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
-  target=$( (echo "$tags"; echo "$branches") |
-            fzf --no-hscroll --no-multi --delimiter="\t" -n 2 --ansi \
-                 --preview="git log -200 --pretty=format:%s \$(echo {+2..} | sed 's/\$/../')" ) || return
-  git checkout "$(echo "$target" | awk '{print $2}')"
-}
+# Helpers for preview and commit hash extraction
+_gitLogLineToHash='echo {} | grep -o "[a-f0-9]\{7\}" | head -1'
+_viewGitLogLine=''"$_gitLogLineToHash"' | xargs -I % sh -c "git show --color=always % | diff-so-fancy"'
 
-# fcoc — Fuzzy checkout Git commit
-fcoc() {
-  local commits commit
-  commits=$(git log --pretty=oneline --abbrev-commit --reverse)
-  commit=$(echo "$commits" | fzf --tac +s +m -e)
-  git checkout "$(echo "$commit" | awk '{print $1}')"
-}
-
-# fshow — Git commit log browser with preview
-fshow() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index \
-      --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:(grep -o '[a-f0-9]\{7\}' | head -1 | \
-              xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF' {} FZF-EOF"
-}
-
-# glNoGraph — Git log without graph (for previews)
-alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
-
-# _gitLogLineToHash — Extract short commit hash from fzf line
-_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
-
-# _viewGitLogLine — Pretty-print commit diff with diff-so-fancy
-_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
-
-# fcoc_preview — Fuzzy checkout Git commit with diff preview
+# fcoc_preview — Fuzzy checkout commit with preview
 fcoc_preview() {
   local commit
   commit=$(glNoGraph | fzf --no-sort --reverse --tiebreak=index --no-multi \
-                           --ansi --preview="$_viewGitLogLine") &&
-  git checkout "$(echo "$commit" | awk '{print $1}')"
+                            --ansi --preview="$_viewGitLogLine")
+  [[ -n "$commit" ]] && git checkout "$(awk '{print $1}' <<< "$commit")"
 }
 
-# fshow_preview — Fuzzy Git log viewer with preview and hash copy (Alt-Y)
+# fshow_preview — View Git log with preview, Alt-Y copies hash
 fshow_preview() {
   glNoGraph |
     fzf --no-sort --reverse --tiebreak=index --no-multi \
         --ansi --preview="$_viewGitLogLine" \
-        --header "enter to view, alt-y to copy hash" \
+        --header="enter to view, alt-y to copy hash" \
         --bind "enter:execute:$_viewGitLogLine | less -R" \
         --bind "alt-y:execute:$_gitLogLineToHash | pbcopy"
 }
 
-# cc — Fuzzy check ConfigCat flag value
+# cc — Fuzzy search ConfigCat flags and fetch value
 cc() {
   local flag settingId
-  flag=$(configcat f ls --json | jq '.[].name' | fzf)
-  settingId=$(configcat f ls --json | jq ".[] | select(.name == $flag) | .settingId")
-  configcat flag value sh --setting-id "$settingId"
+  flag=$(configcat f ls --json | jq -r '.[].name' | fzf)
+  settingId=$(configcat f ls --json | jq -r --arg name "$flag" '.[] | select(.name == $name) | .settingId')
+  [[ -n "$settingId" ]] && configcat flag value sh --setting-id "$settingId"
 }
