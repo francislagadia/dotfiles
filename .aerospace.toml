@@ -26,7 +26,7 @@ outer.bottom = 8                                   # Gap from screen's bottom ed
 [mode.main.binding]
 cmd-ctrl-w = 'mode window'                         # Enter window management mode
 cmd-ctrl-r = 'mode resize'                         # Enter resizing/layout mode
-cmd-ctrl-s = 'mode service'                        # Enter config and utility mode
+cmd-ctrl-v = 'mode vservice'                        # Enter config and utility mode
 cmd-ctrl-f = 'fullscreen'                          # Toggle fullscreen
 alt-tab = 'workspace-back-and-forth'               # Toggle between last two workspaces (Option+Tab)
 
@@ -84,8 +84,8 @@ space = 'layout floating tiling'                   # Toggle floating/tiling layo
 esc = 'mode main'                                  # Return to main mode
 enter = 'mode main'                                # Return to main mode
 
-# === SERVICE MODE: Config actions and workspace reset ===
-[mode.service.binding]
+# === VSERVICE MODE: Config actions and workspace reset ===
+[mode.vservice.binding]
 c = 'flatten-workspace-tree'                       # Flatten current workspace layout
 r = 'reload-config'                                # Reload this config file
 esc = 'mode main'                                  # Return to main mode
