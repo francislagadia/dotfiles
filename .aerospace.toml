@@ -13,14 +13,14 @@ enable-normalization-opposite-orientation-for-nested-containers = false  # Prese
 default-root-container-layout = 'tiles'          # Default layout mode is tiling
 default-root-container-orientation = 'auto'      # Auto-orient layout based on screen dimensions
 
-# Define space between windows and screen edges
-[gaps]
-inner.horizontal = 4                              # Horizontal gap between windows
-inner.vertical = 4                                # Vertical gap between windows
-outer.left = 8                                     # Gap from screen's left edge
-outer.right = 8                                    # Gap from screen's right edge
-outer.top = 8                                      # Gap from screen's top edge
-outer.bottom = 8                                   # Gap from screen's bottom edge
+# # Define space between windows and screen edges
+# [gaps]
+# inner.horizontal = 4                              # Horizontal gap between windows
+# inner.vertical = 4                                # Vertical gap between windows
+# outer.left = 8                                     # Gap from screen's left edge
+# outer.right = 8                                    # Gap from screen's right edge
+# outer.top = 8                                      # Gap from screen's top edge
+# outer.bottom = 8                                   # Gap from screen's bottom edge
 
 # === MAIN MODE: Used to switch between functional modes ===
 [mode.main.binding]
