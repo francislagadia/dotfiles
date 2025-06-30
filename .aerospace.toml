@@ -4,7 +4,6 @@ start-at-login = true
 # Run these commands after Aerospace starts
 after-startup-command = [
   'workspace 1',                                 # Automatically switch to workspace 1
-  'exec-and-forget open -na Ghostty'             # Launch Ghostty terminal without waiting
 ]
 
 # Layout behavior defaults
@@ -12,15 +11,6 @@ enable-normalization-flatten-containers = false  # Don't auto-flatten nested con
 enable-normalization-opposite-orientation-for-nested-containers = false  # Preserve nested layout orientation
 default-root-container-layout = 'tiles'          # Default layout mode is tiling
 default-root-container-orientation = 'auto'      # Auto-orient layout based on screen dimensions
-
-# # Define space between windows and screen edges
-# [gaps]
-# inner.horizontal = 4                              # Horizontal gap between windows
-# inner.vertical = 4                                # Vertical gap between windows
-# outer.left = 8                                     # Gap from screen's left edge
-# outer.right = 8                                    # Gap from screen's right edge
-# outer.top = 8                                      # Gap from screen's top edge
-# outer.bottom = 8                                   # Gap from screen's bottom edge
 
 # === MAIN MODE: Used to switch between functional modes ===
 [mode.main.binding]
@@ -107,6 +97,10 @@ run = ['layout floating']                          # Float Ghostty
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = ['layout floating']                          # Float Obsidian
+
+[[on-window-detected]]
+if.app-id = 'cc.ffitch.shottr'
+run = ['layout floating']                          # Float Shottr
 
 # === APP WORKSPACE ASSIGNMENT: Route specific apps to dedicated workspaces ===
 [[on-window-detected]]
