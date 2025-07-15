@@ -124,7 +124,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # ── Custom Scripts ─────────────────────────────────────────────────────────
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions  # Load custom Zsh functions
-# [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 # [[ -f ~/.bash_functions ]] && source ~/.bash_functions
 
 # ── Optional Visual Tweaks ────────────────────────────────────────────────
