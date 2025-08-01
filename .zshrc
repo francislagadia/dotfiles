@@ -122,6 +122,9 @@ alias evim='nvim ~/.vimrc'
 # Git bare repo alias for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+# Use bat as a drop-in replacement for cat with syntax highlighting
+alias cat="bat --theme auto:system --theme-dark default --theme-light GitHub"
+
 # ── Custom Scripts ─────────────────────────────────────────────────────────
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions  # Load custom Zsh functions
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
