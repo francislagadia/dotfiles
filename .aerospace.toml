@@ -58,6 +58,8 @@ shift-0 = 'move-node-to-workspace 10'
 
 esc = 'mode main'                                  # Return to main mode
 enter = 'mode main'                                # Return to main mode
+cmd-ctrl-w = 'mode window'                         # Return to main mode
+cmd-ctrl-f = 'fullscreen'                          # Toggle fullscreen
 
 # === RESIZE MODE: Resize windows and change layout ===
 [mode.resize.binding]
