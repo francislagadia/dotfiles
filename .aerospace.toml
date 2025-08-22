@@ -24,17 +24,17 @@ default-root-container-orientation = 'auto'                             # Auto-o
 
 [mode.main.binding]
 cmd-ctrl-w = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Mode%20Overlay&value=WINDOW%20MODE'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Start&value=WINDOW%20MODE'",
   "mode window",
 ] # Enter window management mode
 
 cmd-ctrl-r = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Mode%20Overlay&value=RESIZE%20MODE'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Start&value=RESIZE%20MODE'",
   "mode resize",
 ] # Enter resizing/layout mode
 
 cmd-ctrl-v = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Mode%20Overlay&value=VSERVICE%20MODE'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Start&value=VSERVICE%20MODE'",
   "mode vservice",
 ] # Enter config and utility mode
 
@@ -84,36 +84,36 @@ shift-0 = 'move-node-to-workspace 10'
 cmd-ctrl-w = 'mode window' # Re-enter window mode
 cmd-ctrl-f = 'fullscreen' # Toggle fullscreen
 esc = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
   "mode main",
-] # Return to main mode
+] # Exit to main mode
 enter = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
   "mode main",
-] # Return to main mode
-
+] # Exit to main mode
 
 # ─────────────────────────────────────────────────────────────────────────────
 # RESIZE MODE: Resize windows and change layout
 # ─────────────────────────────────────────────────────────────────────────────
 
 [mode.resize.binding]
-h = 'resize width -50' # Shrink window width
-j = 'resize height +50' # Grow window height
-k = 'resize height -50' # Shrink window height
-l = 'resize width +50' # Grow window width
-f = 'fullscreen' # Toggle fullscreen mode
+h = 'resize width -50'                 # Shrink window width
+j = 'resize height +50'                # Grow window height
+k = 'resize height -50'                # Shrink window height
+l = 'resize width +50'                 # Grow window width
+f = 'fullscreen'                       # Toggle fullscreen mode
 d = 'layout tiles horizontal vertical' # Set layout to standard tiling
-s = 'layout v_accordion' # Vertical stacking layout
-w = 'layout h_accordion' # Horizontal stacking layout
+s = 'layout v_accordion'               # Vertical stacking layout
+w = 'layout h_accordion'               # Horizontal stacking layout
 e = 'layout tiles horizontal vertical' # Redundant tiling toggle (alias)
-space = 'layout floating tiling' # Toggle floating/tiling layout
+space = 'layout floating tiling'       # Toggle floating/tiling layout
+
 esc = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
   "mode main",
 ] # Return to main mode
 enter = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
   "mode main",
 ] # Return to main mode
 
@@ -123,15 +123,16 @@ enter = [
 
 [mode.vservice.binding]
 c = 'flatten-workspace-tree' # Flatten current workspace layout
-r = 'reload-config' # Reload this config file
+r = 'reload-config'          # Reload this config file
+
 esc = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
   "mode main",
-] # Return to main mode
+] # Exit to main mode
 enter = [
-  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
   "mode main",
-] # Return to main mode
+] # Exit to main mode
 
 
 # ─────────────────────────────────────────────────────────────────────────────
