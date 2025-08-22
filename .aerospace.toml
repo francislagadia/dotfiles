@@ -1,35 +1,60 @@
-# Launch Aerospace at macOS login
+# ─────────────────────────────────────────────────────────────────────────────
+# Launch & Startup
+# ─────────────────────────────────────────────────────────────────────────────
+
 start-at-login = true
 
 # Run these commands after Aerospace starts
 after-startup-command = [
-  'workspace 1',                                 # Automatically switch to workspace 1
+  'workspace 1', # Automatically switch to workspace 1
 ]
 
-# Layout behavior defaults
-enable-normalization-flatten-containers = false  # Don't auto-flatten nested containers
-enable-normalization-opposite-orientation-for-nested-containers = false  # Preserve nested layout orientation
-default-root-container-layout = 'tiles'          # Default layout mode is tiling
-default-root-container-orientation = 'auto'      # Auto-orient layout based on screen dimensions
+# ─────────────────────────────────────────────────────────────────────────────
+# Layout Defaults
+# ─────────────────────────────────────────────────────────────────────────────
 
-# === MAIN MODE: Used to switch between functional modes ===
+enable-normalization-flatten-containers = false                         # Don't auto-flatten nested containers
+enable-normalization-opposite-orientation-for-nested-containers = false # Preserve nested layout orientation
+default-root-container-layout = 'tiles'                                 # Default layout mode is tiling
+default-root-container-orientation = 'auto'                             # Auto-orient layout based on screen dimensions
+
+# ─────────────────────────────────────────────────────────────────────────────
+# MAIN MODE: Used to switch between functional modes
+# ─────────────────────────────────────────────────────────────────────────────
+
 [mode.main.binding]
-cmd-ctrl-w = 'mode window'                         # Enter window management mode
-cmd-ctrl-r = 'mode resize'                         # Enter resizing/layout mode
-cmd-ctrl-v = 'mode vservice'                        # Enter config and utility mode
-cmd-ctrl-f = 'fullscreen'                          # Toggle fullscreen
-alt-tab = 'workspace-back-and-forth'               # Toggle between last two workspaces (Option+Tab)
+cmd-ctrl-w = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Mode%20Overlay&value=WINDOW%20MODE'",
+  "mode window",
+] # Enter window management mode
 
-# === WINDOW MODE: Move focus, rearrange windows, change workspaces ===
+cmd-ctrl-r = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Mode%20Overlay&value=RESIZE%20MODE'",
+  "mode resize",
+] # Enter resizing/layout mode
+
+cmd-ctrl-v = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Mode%20Overlay&value=VSERVICE%20MODE'",
+  "mode vservice",
+] # Enter config and utility mode
+
+cmd-ctrl-f = 'fullscreen'            # Toggle fullscreen
+alt-tab = 'workspace-back-and-forth' # Toggle between last two workspaces (Option+Tab)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# WINDOW MODE: Move focus, rearrange windows, change workspaces
+# ─────────────────────────────────────────────────────────────────────────────
+
 [mode.window.binding]
-h = 'focus left'                                   # Move focus left
-j = 'focus down'                                   # Move focus down
-k = 'focus up'                                     # Move focus up
-l = 'focus right'                                  # Move focus right
-shift-h = 'move left'                              # Move window left
-shift-j = 'move down'                              # Move window down
-shift-k = 'move up'                                # Move window up
-shift-l = 'move right'                             # Move window right
+h = 'focus left'       # Move focus left
+j = 'focus down'       # Move focus down
+k = 'focus up'         # Move focus up
+l = 'focus right'      # Move focus right
+shift-h = 'move left'  # Move window left
+shift-j = 'move down'  # Move window down
+shift-k = 'move up'    # Move window up
+shift-l = 'move right' # Move window right
+
 
 # Switch to specific workspaces
 1 = 'workspace 1'
@@ -42,7 +67,7 @@ shift-l = 'move right'                             # Move window right
 8 = 'workspace 8'
 9 = 'workspace 9'
 0 = 'workspace 10'
-tab = 'workspace-back-and-forth'                   # Toggle between last two workspaces
+tab = 'workspace-back-and-forth' # Toggle between last two workspaces
 
 # Move windows to specific workspaces
 shift-1 = 'move-node-to-workspace 1'
@@ -56,70 +81,105 @@ shift-8 = 'move-node-to-workspace 8'
 shift-9 = 'move-node-to-workspace 9'
 shift-0 = 'move-node-to-workspace 10'
 
-esc = 'mode main'                                  # Return to main mode
-enter = 'mode main'                                # Return to main mode
-cmd-ctrl-w = 'mode window'                         # Return to main mode
-cmd-ctrl-f = 'fullscreen'                          # Toggle fullscreen
+cmd-ctrl-w = 'mode window' # Re-enter window mode
+cmd-ctrl-f = 'fullscreen' # Toggle fullscreen
+esc = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "mode main",
+] # Return to main mode
+enter = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "mode main",
+] # Return to main mode
 
-# === RESIZE MODE: Resize windows and change layout ===
+
+# ─────────────────────────────────────────────────────────────────────────────
+# RESIZE MODE: Resize windows and change layout
+# ─────────────────────────────────────────────────────────────────────────────
+
 [mode.resize.binding]
-h = 'resize width -50'                             # Shrink window width
-j = 'resize height +50'                            # Grow window height
-k = 'resize height -50'                            # Shrink window height
-l = 'resize width +50'                             # Grow window width
-f = 'fullscreen'                                   # Toggle fullscreen mode
-d = 'layout tiles horizontal vertical'             # Set layout to standard tiling
-s = 'layout v_accordion'                           # Vertical stacking layout
-w = 'layout h_accordion'                           # Horizontal stacking layout
-e = 'layout tiles horizontal vertical'             # Redundant tiling toggle (alias)
-space = 'layout floating tiling'                   # Toggle floating/tiling layout
-esc = 'mode main'                                  # Return to main mode
-enter = 'mode main'                                # Return to main mode
+h = 'resize width -50' # Shrink window width
+j = 'resize height +50' # Grow window height
+k = 'resize height -50' # Shrink window height
+l = 'resize width +50' # Grow window width
+f = 'fullscreen' # Toggle fullscreen mode
+d = 'layout tiles horizontal vertical' # Set layout to standard tiling
+s = 'layout v_accordion' # Vertical stacking layout
+w = 'layout h_accordion' # Horizontal stacking layout
+e = 'layout tiles horizontal vertical' # Redundant tiling toggle (alias)
+space = 'layout floating tiling' # Toggle floating/tiling layout
+esc = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "mode main",
+] # Return to main mode
+enter = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "mode main",
+] # Return to main mode
 
-# === VSERVICE MODE: Config actions and workspace reset ===
+# ─────────────────────────────────────────────────────────────────────────────
+# VSERVICE MODE: Config actions and workspace reset
+# ─────────────────────────────────────────────────────────────────────────────
+
 [mode.vservice.binding]
-c = 'flatten-workspace-tree'                       # Flatten current workspace layout
-r = 'reload-config'                                # Reload this config file
-esc = 'mode main'                                  # Return to main mode
-enter = 'mode main'                                # Return to main mode
+c = 'flatten-workspace-tree' # Flatten current workspace layout
+r = 'reload-config' # Reload this config file
+esc = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "mode main",
+] # Return to main mode
+enter = [
+  "exec-and-forget open 'kmtrigger://macro=Show%20Main%20Overlay%20(Short)'",
+  "mode main",
+] # Return to main mode
 
-# === WINDOW FLOATING RULES: Set specific apps to float by default ===
+
+# ─────────────────────────────────────────────────────────────────────────────
+# WINDOW FLOATING RULES: Set specific apps to float by default
+# ─────────────────────────────────────────────────────────────────────────────
+
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-run = ['layout floating']                          # Float Finder
+run = ['layout floating']      # Float Finder
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-run = ['layout floating']                          # Float Alacritty
+run = ['layout floating']   # Float Alacritty
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = ['layout floating']                          # Float Ghostty
+run = ['layout floating']           # Float Ghostty
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = ['layout floating']                          # Float Obsidian
+run = ['layout floating'] # Float Obsidian
 
 [[on-window-detected]]
 if.app-id = 'cc.ffitch.shottr'
-run = ['layout floating']                          # Float Shottr
+run = ['layout floating']      # Float Shottr
 
-# === APP WORKSPACE ASSIGNMENT: Route specific apps to dedicated workspaces ===
+# ─────────────────────────────────────────────────────────────────────────────
+# APP WORKSPACE ASSIGNMENT: Route specific apps to dedicated workspaces
+# ─────────────────────────────────────────────────────────────────────────────
+
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm'
-run = ['move-node-to-workspace 3']                 # Send PyCharm to workspace 3
+run = ['move-node-to-workspace 3']  # Send PyCharm to workspace 3
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
-run = ['move-node-to-workspace 4']                 # Send Postman to workspace 4
+run = ['move-node-to-workspace 4'] # Send Postman to workspace 4
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = ['move-node-to-workspace 10']                # Send Slack to workspace 10
+run = ['move-node-to-workspace 10']     # Send Slack to workspace 10
 
-# === FORCE WORKSPACES TO SPECIFIC MONITORS ===
+# ─────────────────────────────────────────────────────────────────────────────
+# FORCE WORKSPACES TO SPECIFIC MONITORS
+# ─────────────────────────────────────────────────────────────────────────────
+
 [workspace-to-monitor-force-assignment]
-6 = '^built-in retina display$'                    # Assign workspace 6 to internal display
+6 = '^built-in retina display$'  # Assign workspace 6 to internal display
 7 = '^built-in retina display$'
 8 = '^built-in retina display$'
 9 = '^built-in retina display$'
