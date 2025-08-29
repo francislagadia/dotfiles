@@ -24,19 +24,17 @@ default-root-container-orientation = 'auto'                             # Auto-o
 
 [mode.main.binding]
 cmd-ctrl-w = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Start&value=WINDOW%20MODE'",
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=WINDOW%20MODE'",
   "mode window",
-] # Enter window management mode
-
+]
 cmd-ctrl-r = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Start&value=RESIZE%20MODE'",
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=RESIZE%20MODE'",
   "mode resize",
-] # Enter resizing/layout mode
-
+]
 cmd-ctrl-v = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Start&value=VSERVICE%20MODE'",
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=VSERVICE%20MODE'",
   "mode vservice",
-] # Enter config and utility mode
+]
 
 cmd-ctrl-f = 'fullscreen'            # Toggle fullscreen
 alt-tab = 'workspace-back-and-forth' # Toggle between last two workspaces (Option+Tab)
@@ -82,15 +80,16 @@ shift-9 = 'move-node-to-workspace 9'
 shift-0 = 'move-node-to-workspace 10'
 
 cmd-ctrl-w = 'mode window' # Re-enter window mode
-cmd-ctrl-f = 'fullscreen' # Toggle fullscreen
-esc = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
-  "mode main",
-] # Exit to main mode
+cmd-ctrl-f = 'fullscreen'  # Toggle fullscreen
+
 enter = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
   "mode main",
-] # Exit to main mode
+]
+esc = [
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
+  "mode main",
+]
 
 # ─────────────────────────────────────────────────────────────────────────────
 # RESIZE MODE: Resize windows and change layout
@@ -108,14 +107,14 @@ w = 'layout h_accordion'               # Horizontal stacking layout
 e = 'layout tiles horizontal vertical' # Redundant tiling toggle (alias)
 space = 'layout floating tiling'       # Toggle floating/tiling layout
 
-esc = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
-  "mode main",
-] # Return to main mode
 enter = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
   "mode main",
-] # Return to main mode
+]
+esc = [
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
+  "mode main",
+]
 
 # ─────────────────────────────────────────────────────────────────────────────
 # VSERVICE MODE: Config actions and workspace reset
@@ -125,14 +124,14 @@ enter = [
 c = 'flatten-workspace-tree' # Flatten current workspace layout
 r = 'reload-config'          # Reload this config file
 
-esc = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
-  "mode main",
-] # Exit to main mode
 enter = [
-  "exec-and-forget open 'kmtrigger://macro=Mode%20HUD%20%E2%80%94%20Stop'",
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
   "mode main",
-] # Exit to main mode
+]
+esc = [
+  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
+  "mode main",
+]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
