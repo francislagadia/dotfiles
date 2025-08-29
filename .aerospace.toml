@@ -54,64 +54,18 @@ shift-k = 'move up'    # Move window up
 shift-l = 'move right' # Move window right
 
 
-# Switch to specific workspaces (hide HUD → switch → re-show "WINDOW MODE")
-1 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 1",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-2 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 2",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-3 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 3",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-4 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 4",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-5 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 5",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-6 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 6",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-7 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 7",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-8 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 8",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-9 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 9",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-0 = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace 10",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
-
-# Back-and-forth needs the same treatment
-tab = [
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_hide\" in workflow \"com.aerospace.modehud\"'",
-  "workspace-back-and-forth",
-  "exec-and-forget osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"hud_show\" in workflow \"com.aerospace.modehud\" with argument \"WINDOW MODE\"'",
-]
+# Switch to specific workspaces
+1 = 'workspace 1'
+2 = 'workspace 2'
+3 = 'workspace 3'
+4 = 'workspace 4'
+5 = 'workspace 5'
+6 = 'workspace 6'
+7 = 'workspace 7'
+8 = 'workspace 8'
+9 = 'workspace 9'
+0 = 'workspace 10'
+tab = 'workspace-back-and-forth' # Toggle between last two workspaces
 
 # Move windows to specific workspaces
 shift-1 = 'move-node-to-workspace 1'
