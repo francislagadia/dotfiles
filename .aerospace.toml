@@ -179,6 +179,11 @@ run = ['move-node-to-workspace 10']     # Send Slack to workspace 10
 # ─────────────────────────────────────────────────────────────────────────────
 
 [workspace-to-monitor-force-assignment]
+1 = 'PA32QCV'
+2 = 'PA32QCV'
+3 = 'PA32QCV'
+4 = 'PA32QCV'
+5 = 'PA32QCV'
 6 = '^built-in retina display$'  # Assign workspace 6 to internal display
 7 = '^built-in retina display$'
 8 = '^built-in retina display$'
