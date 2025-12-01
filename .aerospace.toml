@@ -35,6 +35,10 @@ cmd-ctrl-v = [
   "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=VSERVICE%20MODE'",
   "mode vservice",
 ]
+shift-ctrl-left  = 'workspace prev'
+shift-ctrl-right = 'workspace next'
+#ctrl-up    = 'workspace 1'                # optional: jump to first workspace
+#ctrl-down  = 'workspace-back-and-forth'   # optional: quick toggle
 
 cmd-ctrl-f = 'fullscreen'            # Toggle fullscreen
 alt-tab = 'workspace-back-and-forth' # Toggle between last two workspaces (Option+Tab)
@@ -164,15 +168,15 @@ run = ['layout floating']      # Float Shottr
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm'
-run = ['move-node-to-workspace 3']  # Send PyCharm to workspace 3
+run = ['move-node-to-workspace 4']  # Send PyCharm to workspace 3
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
-run = ['move-node-to-workspace 4'] # Send Postman to workspace 4
+run = ['move-node-to-workspace 5'] # Send Postman to workspace 4
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = ['move-node-to-workspace 10']     # Send Slack to workspace 10
+run = ['move-node-to-workspace 1']     # Send Slack to workspace 10
 
 # ─────────────────────────────────────────────────────────────────────────────
 # FORCE WORKSPACES TO SPECIFIC MONITORS
@@ -188,4 +192,4 @@ run = ['move-node-to-workspace 10']     # Send Slack to workspace 10
 7 = '^built-in retina display$'
 8 = '^built-in retina display$'
 9 = '^built-in retina display$'
-10 = '^built-in retina display$'
+10 = 'AirPlay'
