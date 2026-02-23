@@ -7,6 +7,8 @@ start-at-login = true
 # Run these commands after Aerospace starts
 after-startup-command = [
   'workspace 1', # Automatically switch to workspace 1
+  # JankyBorders won't run twice (it updates an existing process)
+  'exec-and-forget borders active_color=0xffff2a2a inactive_color=0xff1a1a1a width=7.0',
 ]
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -16,7 +18,18 @@ after-startup-command = [
 enable-normalization-flatten-containers = false                         # Don't auto-flatten nested containers
 enable-normalization-opposite-orientation-for-nested-containers = false # Preserve nested layout orientation
 default-root-container-layout = 'tiles'                                 # Default layout mode is tiling
-default-root-container-orientation = 'auto'                             # Auto-orient layout based on screen dimensions
+default-root-container-orientation = 'auto'                             # Auto-orient layout based on screen dimensions# Gaps are CRITICAL on a 6K display
+
+
+# Gaps are CRITICAL on a 6K display
+[gaps]
+inner.horizontal = 16
+inner.vertical = 16
+
+outer.left = 7
+outer.top = 7
+outer.right = 7
+outer.bottom = 7
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MAIN MODE: Used to switch between functional modes
@@ -35,7 +48,7 @@ cmd-ctrl-v = [
   "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=VSERVICE%20MODE'",
   "mode vservice",
 ]
-shift-ctrl-left  = 'workspace prev'
+shift-ctrl-left = 'workspace prev'
 shift-ctrl-right = 'workspace next'
 #ctrl-up    = 'workspace 1'                # optional: jump to first workspace
 #ctrl-down  = 'workspace-back-and-forth'   # optional: quick toggle
@@ -100,10 +113,10 @@ esc = [
 # ─────────────────────────────────────────────────────────────────────────────
 
 [mode.resize.binding]
-h = 'resize width -50'                 # Shrink window width
+h = 'resize width +50'                 # Grow window width
 j = 'resize height +50'                # Grow window height
 k = 'resize height -50'                # Shrink window height
-l = 'resize width +50'                 # Grow window width
+l = 'resize width -50'                 # Shrink window width
 f = 'fullscreen'                       # Toggle fullscreen mode
 d = 'layout tiles horizontal vertical' # Set layout to standard tiling
 s = 'layout v_accordion'               # Vertical stacking layout
@@ -162,24 +175,30 @@ run = ['layout floating'] # Float Obsidian
 if.app-id = 'cc.ffitch.shottr'
 run = ['layout floating']      # Float Shottr
 
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['layout floating']               # Float Slack
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # APP WORKSPACE ASSIGNMENT: Route specific apps to dedicated workspaces
 # ─────────────────────────────────────────────────────────────────────────────
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm'
-run = ['move-node-to-workspace 4']  # Send PyCharm to workspace 3
+run = ['move-node-to-workspace 4']  # Send PyCharm to workspace 4
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
-run = ['move-node-to-workspace 5'] # Send Postman to workspace 4
+run = ['move-node-to-workspace 5'] # Send Postman to workspace 5
+
+# [[on-window-detected]]
+# if.app-id = 'com.tinyspeck.slackmacgap'
+# run = ['move-node-to-workspace 1']      # Send Slack to workspace 1
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = ['move-node-to-workspace 1']     # Send Slack to workspace 10
-
-[[on-window-detected]]
-if.app-id = 'us.zoom.xo'
+if.app-id = 'us.zoom.xos'
 run = ['move-node-to-workspace 6'] # Send Zoom to workspace 6
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -192,8 +211,8 @@ run = ['move-node-to-workspace 6'] # Send Zoom to workspace 6
 3 = 'PA32QCV'
 4 = 'PA32QCV'
 5 = 'PA32QCV'
-6 = '^built-in retina display$'  # Assign workspace 6 to internal display
+6 = '^built-in retina display$' # Assign workspace 6 to internal display
 7 = '^built-in retina display$'
 8 = '^built-in retina display$'
 9 = '^built-in retina display$'
-10 = 'AirPlay'
+10 = 'XENEON EDGE'
