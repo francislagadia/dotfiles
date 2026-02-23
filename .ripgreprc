@@ -1,9 +1,64 @@
-# RipGrep configuration
---max-columns=150
+# ~/.ripgreprc (macOS + Astronvim/Telescope friendly)
+
+# ---- Keep output/tooling happy ----
+--smart-case
+--line-number
+--column
+--color=auto
+
+# Keep Telescope from choking on giant/minified/generated files
+--max-columns=300
 --max-columns-preview
+--max-filesize=2M
 
-# exclude settings/cache folders from search
---glob=!{.idea,.pytest,.hypothesis,.pytest_cache,.git,**/.pytest_cache,**/venv,**/tox}/*
+# Avoid symlink explosions
+--no-follow
 
-# exclude pgp files from search
+# ---- Your existing excludes (expanded a bit) ----
+--glob=!**/.git/**
+--glob=!**/.idea/**
+--glob=!**/.pytest_cache/**
+--glob=!**/.hypothesis/**
+--glob=!**/venv/**
+--glob=!**/.venv/**
+--glob=!**/tox/**
+--glob=!**/.tox/**
 --glob=!*.pgp
+
+# ---- Big macOS home-directory stuff (main speed win from ~) ----
+--glob=!**/Library/**
+--glob=!**/.Trash/**
+--glob=!**/Downloads/**
+--glob=!**/Movies/**
+--glob=!**/Music/**
+--glob=!**/Pictures/**
+--glob=!**/Public/**
+
+# ---- Common heavy vendor/build/cache ----
+--glob=!**/node_modules/**
+--glob=!**/dist/**
+--glob=!**/build/**
+--glob=!**/.next/**
+--glob=!**/.turbo/**
+--glob=!**/target/**
+--glob=!**/.cache/**
+--glob=!**/__pycache__/**
+--glob=!**/.mypy_cache/**
+--glob=!**/.DS_Store
+
+# ---- Binary/media ----
+--glob=!**/*.png
+--glob=!**/*.jpg
+--glob=!**/*.jpeg
+--glob=!**/*.gif
+--glob=!**/*.webp
+--glob=!**/*.heic
+--glob=!**/*.mov
+--glob=!**/*.mp4
+--glob=!**/*.mp3
+--glob=!**/*.pdf
+--glob=!**/*.zip
+--glob=!**/*.tar
+--glob=!**/*.gz
+--glob=!**/*.7z
+--glob=!**/*.dmg
