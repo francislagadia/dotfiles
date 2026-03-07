@@ -50,6 +50,17 @@ cmd-ctrl-v = [
 ]
 shift-ctrl-left = 'workspace prev'
 shift-ctrl-right = 'workspace next'
+# Hyper = all modifiers (⌘⌃⌥⇧) for direct workspace jumps
+cmd-ctrl-alt-shift-1 = 'workspace 1'
+cmd-ctrl-alt-shift-2 = 'workspace 2'
+cmd-ctrl-alt-shift-3 = 'workspace 3'
+cmd-ctrl-alt-shift-4 = 'workspace 4'
+cmd-ctrl-alt-shift-5 = 'workspace 5'
+cmd-ctrl-alt-shift-6 = 'workspace 6'
+cmd-ctrl-alt-shift-7 = 'workspace 7'
+cmd-ctrl-alt-shift-8 = 'workspace 8'
+cmd-ctrl-alt-shift-9 = 'workspace 9'
+cmd-ctrl-alt-shift-0 = 'workspace 10'
 #ctrl-up    = 'workspace 1'                # optional: jump to first workspace
 #ctrl-down  = 'workspace-back-and-forth'   # optional: quick toggle
 
