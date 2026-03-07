@@ -48,8 +48,8 @@ cmd-ctrl-v = [
   "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=VSERVICE%20MODE'",
   "mode vservice",
 ]
-shift-ctrl-left = 'workspace prev'
-shift-ctrl-right = 'workspace next'
+cmd-ctrl-alt-shift-leftSquareBracket = 'workspace prev' # Hyper + [ ("{") jumps to previous workspace
+cmd-ctrl-alt-shift-rightSquareBracket = 'workspace next' # Hyper + ] ("}") jumps to next workspace
 # Hyper = all modifiers (⌘⌃⌥⇧) for direct workspace jumps
 cmd-ctrl-alt-shift-1 = 'workspace 1'
 cmd-ctrl-alt-shift-2 = 'workspace 2'
