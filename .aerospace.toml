@@ -36,19 +36,7 @@ outer.bottom = 7
 # ─────────────────────────────────────────────────────────────────────────────
 
 [mode.main.binding]
-cmd-ctrl-w = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=WINDOW%20MODE'",
-  "mode window",
-]
-cmd-ctrl-r = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=RESIZE%20MODE'",
-  "mode resize",
-]
-cmd-ctrl-v = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_show?argument=VSERVICE%20MODE'",
-  "mode vservice",
-]
-cmd-ctrl-alt-shift-leftSquareBracket = 'workspace prev' # Hyper + [ ("{") jumps to previous workspace
+cmd-ctrl-alt-shift-leftSquareBracket = 'workspace prev'  # Hyper + [ ("{") jumps to previous workspace
 cmd-ctrl-alt-shift-rightSquareBracket = 'workspace next' # Hyper + ] ("}") jumps to next workspace
 # Hyper = all modifiers (⌘⌃⌥⇧) for direct workspace jumps
 cmd-ctrl-alt-shift-1 = 'workspace 1'
@@ -107,17 +95,10 @@ shift-8 = 'move-node-to-workspace 8'
 shift-9 = 'move-node-to-workspace 9'
 shift-0 = 'move-node-to-workspace 10'
 
-cmd-ctrl-w = 'mode window' # Re-enter window mode
-cmd-ctrl-f = 'fullscreen'  # Toggle fullscreen
+cmd-ctrl-f = 'fullscreen' # Toggle fullscreen
 
-enter = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
-  "mode main",
-]
-esc = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
-  "mode main",
-]
+enter = 'mode main'
+esc = 'mode main'
 
 # ─────────────────────────────────────────────────────────────────────────────
 # RESIZE MODE: Resize windows and change layout
@@ -135,14 +116,8 @@ w = 'layout h_accordion'               # Horizontal stacking layout
 e = 'layout tiles horizontal vertical' # Redundant tiling toggle (alias)
 space = 'layout floating tiling'       # Toggle floating/tiling layout
 
-enter = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
-  "mode main",
-]
-esc = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
-  "mode main",
-]
+enter = 'mode main'
+esc = 'mode main'
 
 # ─────────────────────────────────────────────────────────────────────────────
 # VSERVICE MODE: Config actions and workspace reset
@@ -152,14 +127,8 @@ esc = [
 c = 'flatten-workspace-tree' # Flatten current workspace layout
 r = 'reload-config'          # Reload this config file
 
-enter = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
-  "mode main",
-]
-esc = [
-  "exec-and-forget open 'alfred://runtrigger/com.aerospace.modehud/hud_hide'",
-  "mode main",
-]
+enter = 'mode main'
+esc = 'mode main'
 
 
 # ─────────────────────────────────────────────────────────────────────────────
