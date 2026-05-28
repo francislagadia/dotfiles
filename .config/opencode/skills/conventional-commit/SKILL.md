@@ -8,6 +8,13 @@ metadata:
   focus: workflows
 ---
 
+## Defaults
+- Allow formatter/auto-fixer changes (including pre-commit hooks).
+- If hooks modify files during `git commit`:
+- Stage only the intended modified paths.
+- Retry the commit once.
+- If the user says "do not alter files", do not run formatters/auto-fixers and do not commit hook-modified files.
+
 ## Workflow (do in this order)
 1. Inspect repo state (prefer running in parallel):
 - `git status --porcelain=v1 --branch`
@@ -21,6 +28,11 @@ metadata:
 
 3. Stage only the intended files:
 - `git add <paths...>`
+
+If the user says "commit staged" or "commit staged changes":
+- Do not stage anything new.
+- Commit what is currently staged.
+- If hooks modify intended staged files, stage those modifications and retry the commit once.
 
 4. Commit (no amend unless explicitly requested):
 - `git commit -m "<type>(<scope>): <summary>"`
