@@ -7,6 +7,8 @@ export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"  # Use 1Password as SSH agent
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"        # Custom config for ripgrep
 export SSL_CERT_FILE="/Library/Application Support/Netskope/STAgent/data/nscacert.pem"  # CA cert for Netskope
 export NODE_EXTRA_CA_CERTS="$HOME/.aws/nskp_config/netskope-cert-bundle.pem"            # Extra certs for Node.js
+export REQUESTS_CA_BUNDLE="$NODE_EXTRA_CA_CERTS"  # Use same certs for Python requests
+export CURL_CA_BUNDLE="$NODE_EXTRA_CA_CERTS"  # Use same certs for curl
 
 # ── Editor Defaults ───────────────────────────────────────────────────────
 export EDITOR=nvim     # Default CLI editor
@@ -137,3 +139,11 @@ alias cat="bat --theme auto:system --theme-dark default --theme-light GitHub"
 
 # VSCode shell integration (uncomment if using VSCode as terminal)
 # [[ "$TERM_PROGRAM" == "vscode" ]] && source "$(code --locate-shell-integration-path zsh)"
+#
+
+
+eval "$(zoxide init --cmd cd zsh)"  # zoxide: replace `cd` with zoxide-powered directory jumping
+
+# ── Homebrew environment ──
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# export PATH="$HOME/.cargo/bin:$PATH"
