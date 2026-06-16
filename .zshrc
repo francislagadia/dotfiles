@@ -145,5 +145,5 @@ alias cat="bat --theme auto:system --theme-dark default --theme-light GitHub"
 eval "$(zoxide init --cmd cd zsh)"  # zoxide: replace `cd` with zoxide-powered directory jumping
 
 # ── Homebrew environment ──
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 # export PATH="$HOME/.cargo/bin:$PATH"
