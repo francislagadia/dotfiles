@@ -115,6 +115,7 @@ s = 'layout v_accordion'               # Vertical stacking layout
 w = 'layout h_accordion'               # Horizontal stacking layout
 e = 'layout tiles horizontal vertical' # Redundant tiling toggle (alias)
 space = 'layout floating tiling'       # Toggle floating/tiling layout
+tab = 'move-workspace-to-monitor --wrap-around next'
 
 enter = 'mode main'
 esc = 'mode main'
@@ -158,7 +159,7 @@ run = ['layout floating']      # Float Shottr
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = ['layout floating']               # Float Slack
+run = ['layout floating', 'move-node-to-workspace 10'] # Float Slack on workspace 10
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -191,8 +192,8 @@ run = ['move-node-to-workspace 6'] # Send Zoom to workspace 6
 3 = 'PA32QCV'
 4 = 'PA32QCV'
 5 = 'PA32QCV'
-6 = '^built-in retina display$' # Assign workspace 6 to internal display
-7 = '^built-in retina display$'
-8 = '^built-in retina display$'
-9 = '^built-in retina display$'
-10 = 'Sidecar'
+# 6 = 'PA32QCV' # Assign workspace 6 to internal display
+# 7 = '^built-in retina display$'
+# 8 = '^built-in retina display$'
+# 9 = '^built-in retina display$'
+# 10 = 'Sidecar'
