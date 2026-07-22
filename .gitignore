@@ -12,3 +12,5 @@
 .python-version
 .pylintrc
 pyrightconfig.json
+AGENTS.md
+CONTEXT.md
