@@ -130,6 +130,8 @@ alias cat="bat --theme auto:system --theme-dark default --theme-light GitHub"
 # ── Custom Scripts ─────────────────────────────────────────────────────────
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions  # Load custom Zsh functions
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+# Load OpenCode GitHub PAT when unset
+[[ -z "${OC_GITHUB_PAT:-}" ]] && set_oc_gh_pat >/dev/null
 # [[ -f ~/.bash_functions ]] && source ~/.bash_functions
 
 # ── Optional Visual Tweaks ────────────────────────────────────────────────
@@ -143,6 +145,7 @@ alias cat="bat --theme auto:system --theme-dark default --theme-light GitHub"
 
 
 eval "$(zoxide init --cmd cd zsh)"  # zoxide: replace `cd` with zoxide-powered directory jumping
+
 
 # ── Homebrew environment ──
 # eval "$(/opt/homebrew/bin/brew shellenv)"
